@@ -6,16 +6,56 @@
 <title>Hannah Nicole Designs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Hannah's editable content lives in content.js, not here. -->
+<script src="content.js"></script>
+<script>
+  // ---------------------------------------------------------------
+  // FONT LOADER — reads content.js and loads whichever fonts Hannah
+  // picked from Google Fonts. To add a new option to the picklist,
+  // add an entry here AND to the comment in content.js.
+  // ---------------------------------------------------------------
+  (function(){
+    var FONT_PRESETS = {
+      "Fraunces":            { google: "Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500", stack: "'Fraunces', serif" },
+      "Playfair Display":    { google: "Playfair+Display:ital,wght@0,400;0,600;0,700;1,500", stack: "'Playfair Display', serif" },
+      "Cormorant Garamond":  { google: "Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500", stack: "'Cormorant Garamond', serif" },
+      "Nunito Sans":         { google: "Nunito+Sans:wght@400;600;700", stack: "'Nunito Sans', sans-serif" },
+      "Quicksand":           { google: "Quicksand:wght@400;600;700", stack: "'Quicksand', sans-serif" },
+      "Poppins":             { google: "Poppins:wght@400;500;600;700", stack: "'Poppins', sans-serif" },
+      "Caveat":              { google: "Caveat:wght@500;600;700", stack: "'Caveat', cursive" },
+    };
+    var c = window.SITE_CONTENT || {};
+    var fontChoices = c.fonts || {};
+    var heading = FONT_PRESETS[fontChoices.heading] || FONT_PRESETS["Fraunces"];
+    var body = FONT_PRESETS[fontChoices.body] || FONT_PRESETS["Nunito Sans"];
+
+    var families = [heading.google];
+    if (body.google !== heading.google) families.push(body.google);
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?' + families.map(function(f){ return 'family=' + f; }).join('&') + '&display=swap';
+    document.head.appendChild(link);
+
+    document.documentElement.style.setProperty('--font-heading', heading.stack);
+    document.documentElement.style.setProperty('--font-body', body.stack);
+  })();
+</script>
+
 <style>
+  /* ---------- COLORS ----------
+     Don't edit these directly — go to content.js instead.
+     JavaScript fills in these values automatically when the page loads. */
   :root{
-    --denim: #3B4A5A;
-    --denim-deep: #2A3644;
-    --mustard: #D9A441;
-    --blush: #E8B8AC;
-    --cream: #FBF6EE;
+    --color1: #3B4A5A;
+    --color2: #2A3644;
+    --color3: #D9A441;
+    --color4: #E8B8AC;
+    --color5: #FBF6EE;
     --ink: #2B2B28;
     --stitch: #C8B89A;
+    --font-heading: 'Fraunces', serif;
+    --font-body: 'Nunito Sans', sans-serif;
   }
 
   *{ box-sizing: border-box; margin:0; padding:0; }
@@ -23,14 +63,14 @@
   html{ scroll-behavior: smooth; }
 
   body{
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: var(--font-body);
     color: var(--ink);
-    background: var(--cream);
+    background: var(--color5);
     line-height: 1.6;
   }
 
   h1, h2, h3{
-    font-family: 'Fraunces', serif;
+    font-family: var(--font-heading);
     font-weight: 600;
     line-height: 1.1;
   }
@@ -48,11 +88,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 6vw;
-    background: var(--cream);
+    background: var(--color5);
     border-bottom: 1px solid rgba(43,43,40,0.08);
   }
   nav .brand{
-    font-family: 'Fraunces', serif;
+    font-family: var(--font-heading);
     font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -66,15 +106,15 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--denim-deep);
+    color: var(--color2);
   }
-  nav a:hover{ color: var(--mustard); }
+  nav a:hover{ color: var(--color3); }
 
   /* ---------- HERO ---------- */
   .hero{
     position: relative;
-    background: var(--denim);
-    color: var(--cream);
+    background: var(--color1);
+    color: var(--color5);
     padding: 7rem 6vw 9rem;
     overflow: hidden;
   }
@@ -89,7 +129,7 @@
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--mustard);
+    color: var(--color3);
     margin-bottom: 1.2rem;
   }
   .hero h1{
@@ -98,7 +138,7 @@
   }
   .hero h1 em{
     font-style: italic;
-    color: var(--blush);
+    color: var(--color4);
   }
   .hero p{
     font-size: 1.15rem;
@@ -109,8 +149,8 @@
   .btn{
     display: inline-block;
     padding: 0.85rem 1.8rem;
-    background: var(--mustard);
-    color: var(--denim-deep);
+    background: var(--color3);
+    color: var(--color2);
     font-weight: 700;
     text-decoration: none;
     border-radius: 3px;
@@ -123,8 +163,8 @@
   }
   .btn.secondary{
     background: transparent;
-    border: 1.5px solid var(--cream);
-    color: var(--cream);
+    border: 1.5px solid var(--color5);
+    color: var(--color5);
     margin-left: 0.8rem;
   }
 
@@ -147,8 +187,8 @@
     height: 34px;
     margin-top: -1px;
   }
-  .scallop-cream path{ fill: var(--cream); }
-  .scallop-denim path{ fill: var(--denim); }
+  .scallop-light path{ fill: var(--color5); }
+  .scallop-dark path{ fill: var(--color1); }
 
   /* ---------- ABOUT ---------- */
   .about{
@@ -165,14 +205,14 @@
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--denim);
+    color: var(--color1);
     margin-bottom: 0.9rem;
     display: block;
   }
   .about h2{
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     margin-bottom: 1.1rem;
-    color: var(--denim-deep);
+    color: var(--color2);
   }
   .about p{
     color: #4a4a45;
@@ -183,26 +223,35 @@
     aspect-ratio: 4/5;
     border-radius: 6px;
     overflow: hidden;
-    background: var(--blush);
+    background: var(--color4);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 18px 40px rgba(43,43,40,0.15);
   }
+  .about-photo img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   .about-photo .placeholder-label{
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--denim-deep);
+    color: var(--color2);
     background: rgba(255,255,255,0.55);
     padding: 0.4rem 0.9rem;
     border-radius: 20px;
+    position: relative;
+    z-index: 1;
   }
 
   /* ---------- GALLERY ---------- */
   .gallery-section{
     background: var(--stitch);
-    background: linear-gradient(180deg, var(--cream), #F1E9D8 40%, #F1E9D8 100%);
+    background: linear-gradient(180deg, var(--color5), #F1E9D8 40%, #F1E9D8 100%);
     padding: 5rem 6vw 6rem;
   }
   .gallery-header{
@@ -215,13 +264,13 @@
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--denim);
+    color: var(--color1);
     display: block;
     margin-bottom: 0.7rem;
   }
   .gallery-header h2{
     font-size: clamp(1.8rem, 3vw, 2.6rem);
-    color: var(--denim-deep);
+    color: var(--color2);
   }
   .gallery-grid{
     max-width: 1180px;
@@ -240,33 +289,44 @@
   .polaroid:nth-child(even){ transform: rotate(2deg); }
   .polaroid:hover{ transform: rotate(0) translateY(-4px); }
   .polaroid .photo-box{
+    position: relative;
     aspect-ratio: 1/1;
-    background: var(--denim);
-    background: linear-gradient(135deg, var(--denim), var(--blush));
+    background: var(--color1);
+    background: linear-gradient(135deg, var(--color1), var(--color4));
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+  }
+  .polaroid .photo-box img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .polaroid .photo-box span{
-    color: var(--cream);
+    color: var(--color5);
     font-size: 0.8rem;
     font-weight: 700;
     text-align: center;
     padding: 0 1rem;
+    position: relative;
+    z-index: 1;
   }
   .polaroid figcaption{
-    font-family: 'Fraunces', serif;
+    font-family: var(--font-heading);
     font-style: italic;
     text-align: center;
     margin-top: 0.8rem;
-    color: var(--denim-deep);
+    color: var(--color2);
     font-size: 0.95rem;
   }
 
   /* ---------- ETSY CTA ---------- */
   .etsy-cta{
-    background: var(--denim-deep);
-    color: var(--cream);
+    background: var(--color2);
+    color: var(--color5);
     text-align: center;
     padding: 5.5rem 6vw;
   }
@@ -275,7 +335,7 @@
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--mustard);
+    color: var(--color3);
     display: block;
     margin-bottom: 0.9rem;
   }
@@ -295,9 +355,9 @@
     text-align: center;
     font-size: 0.85rem;
     color: rgba(43,43,40,0.6);
-    background: var(--cream);
+    background: var(--color5);
   }
-  footer a{ color: var(--denim); font-weight: 700; text-decoration: none; }
+  footer a{ color: var(--color1); font-weight: 700; text-decoration: none; }
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 800px){
@@ -318,7 +378,7 @@
 
   /* visible focus states */
   a:focus-visible, .btn:focus-visible{
-    outline: 3px solid var(--mustard);
+    outline: 3px solid var(--color3);
     outline-offset: 2px;
   }
 </style>
@@ -326,7 +386,7 @@
 <body>
 
 <nav>
-  <div class="brand">Hannah Nicole Designs</div>
+  <div class="brand" data-content="brandName">Hannah Nicole Designs</div>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#gallery">Gallery</a></li>
@@ -343,77 +403,133 @@
     <path d="M100 100 C 140 60, 160 140, 100 170" fill="none" stroke="#FBF6EE" stroke-width="2.5" opacity="0.5"/>
   </svg>
   <div class="hero-inner">
-    <span class="eyebrow">Handmade, one stitch at a time</span>
-    <h1>Cozy crochet made for <em>real life</em></h1>
-    <p>Hi, I'm [Your Sister's Name] — I make handmade crochet pieces from my home studio, each one worked one stitch at a time. Blankets, amigurumi, wearables, and more.</p>
+    <span class="eyebrow" data-content="hero-eyebrow">Handmade, one stitch at a time</span>
+    <h1><span data-content="hero-heading-start">Cozy crochet made for</span> <em data-content="hero-heading-emphasis">real life</em></h1>
+    <p data-content="hero-intro">Hi, I'm Hannah — I make handmade crochet pieces from my home studio, each one worked one stitch at a time. Blankets, amigurumi, wearables, and more.</p>
     <a href="#shop" class="btn">Shop the collection</a>
     <a href="#about" class="btn secondary">My story</a>
   </div>
 </header>
 
-<svg class="scallop scallop-cream" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<svg class="scallop scallop-light" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <path d="M0,0 C 25,40 75,40 100,0 C 125,40 175,40 200,0 C 225,40 275,40 300,0 C 325,40 375,40 400,0 C 425,40 475,40 500,0 C 525,40 575,40 600,0 C 625,40 675,40 700,0 C 725,40 775,40 800,0 C 825,40 875,40 900,0 C 925,40 975,40 1000,0 C 1025,40 1075,40 1100,0 C 1125,40 1175,40 1200,0 L1200,0 L0,0 Z"/>
 </svg>
 
 <section class="about" id="about">
-  <div class="about-photo">
-    <span class="placeholder-label">📷 replace with a photo of your sister / her workspace</span>
+  <div class="about-photo" data-content="about-photo-container">
+    <span class="placeholder-label">📷 add a photo in content.js</span>
   </div>
   <div>
     <span class="tag">About the maker</span>
     <h2>Every piece starts with a single loop</h2>
-    <p>[Write 2–3 short paragraphs here about your sister: how she started crocheting, what she loves making, and what makes her pieces special — chunky yarn, custom colors, made-to-order, whatever's true.]</p>
-    <p>[Optional: mention turnaround time, custom orders, or where she's based.]</p>
-    <a href="#shop" class="btn" style="background:var(--denim); color:var(--cream);">Visit the shop</a>
+    <p data-content="about-p1">Write 2–3 sentences here about how you started crocheting and what you love making.</p>
+    <p data-content="about-p2">Optional: mention turnaround time, custom orders, or where you're based.</p>
+    <a href="#shop" class="btn" style="background:var(--color1); color:var(--color5);">Visit the shop</a>
   </div>
 </section>
 
 <section class="gallery-section" id="gallery">
   <div class="gallery-header">
-    <span class="tag">Recent makes</span>
-    <h2>A few favorites</h2>
+    <span class="tag">Recent designs</span>
+    <h2>A few favourites</h2>
   </div>
-  <div class="gallery-grid">
-    <figure class="polaroid">
-      <div class="photo-box"><span>Replace with photo 1</span></div>
-      <figcaption>Chunky throw blanket</figcaption>
-    </figure>
-    <figure class="polaroid">
-      <div class="photo-box"><span>Replace with photo 2</span></div>
-      <figcaption>Amigurumi fox</figcaption>
-    </figure>
-    <figure class="polaroid">
-      <div class="photo-box"><span>Replace with photo 3</span></div>
-      <figcaption>Granny square cardigan</figcaption>
-    </figure>
-    <figure class="polaroid">
-      <div class="photo-box"><span>Replace with photo 4</span></div>
-      <figcaption>Market tote bag</figcaption>
-    </figure>
-    <figure class="polaroid">
-      <div class="photo-box"><span>Replace with photo 5</span></div>
-      <figcaption>Baby booties set</figcaption>
-    </figure>
-    <figure class="polaroid">
-      <div class="photo-box"><span>Replace with photo 6</span></div>
-      <figcaption>Scalloped coasters</figcaption>
-    </figure>
+  <div class="gallery-grid" data-content="gallery-grid">
+    <!-- gallery items are added automatically from content.js -->
   </div>
 </section>
 
 <section class="etsy-cta" id="shop">
-  <span class="tag">Ready to take one home?</span>
+  <span class="tag">Ready to make one yourself?</span>
   <h2>Find the full collection on Etsy</h2>
-  <p>New pieces are added regularly — hop over to the shop to see what's currently available.</p>
-  <a href="https://www.etsy.com/shop/YOUR-SHOP-NAME" class="btn" target="_blank" rel="noopener">Visit the Etsy shop →</a>
+  <p>New patterns are added regularly — hop over to the shop to see what's currently available.</p>
+  <a href="#" class="btn" target="_blank" rel="noopener" data-content="etsy-link">Visit the Etsy shop →</a>
 </section>
 
 <footer>
-  <p>&copy; <span id="year"></span> Hannah Nicole Designs · Handmade with care · <a href="https://www.etsy.com/shop/YOUR-SHOP-NAME" target="_blank" rel="noopener">Etsy</a></p>
+  <p>&copy; <span id="year"></span> <span data-content="brandName">Hannah Nicole Designs</span> · Handmade with care · <a href="#" target="_blank" rel="noopener" data-content="etsy-link">Etsy</a></p>
 </footer>
 
 <script>
+(function(){
+  const c = window.SITE_CONTENT;
+
+  function setImageOrPlaceholder(container, src, altText, placeholderText){
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = altText;
+    img.onerror = function(){
+      img.remove();
+      const label = document.createElement('span');
+      label.className = 'placeholder-label';
+      label.textContent = placeholderText;
+      container.appendChild(label);
+    };
+    container.querySelectorAll('.placeholder-label').forEach(el => el.remove());
+    container.appendChild(img);
+  }
+
+  // Text fields, matched by their data-content attribute
+  const textFields = {
+    'hero-eyebrow': c.hero.eyebrow,
+    'hero-heading-start': c.hero.headingStart,
+    'hero-heading-emphasis': c.hero.headingEmphasis,
+    'hero-intro': c.hero.intro,
+    'about-p1': c.about.paragraph1,
+    'about-p2': c.about.paragraph2,
+  };
+  Object.keys(textFields).forEach(key => {
+    document.querySelectorAll('[data-content="' + key + '"]').forEach(el => {
+      el.textContent = textFields[key];
+    });
+  });
+
+  // Brand name (appears twice: nav + footer)
+  document.querySelectorAll('[data-content="brandName"]').forEach(el => {
+    el.textContent = c.brandName;
+  });
+
+  // Etsy link (appears twice: CTA button + footer link)
+  document.querySelectorAll('[data-content="etsy-link"]').forEach(el => {
+    el.href = c.etsyUrl;
+  });
+
+  // About photo
+  setImageOrPlaceholder(
+    document.querySelector('[data-content="about-photo-container"]'),
+    c.about.photo,
+    'Photo of ' + c.brandName,
+    '📷 add a photo in content.js'
+  );
+
+  // Gallery — built fresh from the list in content.js
+  const grid = document.querySelector('[data-content="gallery-grid"]');
+  grid.innerHTML = '';
+  c.gallery.forEach(item => {
+    const figure = document.createElement('figure');
+    figure.className = 'polaroid';
+
+    const photoBox = document.createElement('div');
+    photoBox.className = 'photo-box';
+    setImageOrPlaceholder(photoBox, item.image, item.caption, 'Add photo: ' + item.image);
+
+    const caption = document.createElement('figcaption');
+    caption.textContent = item.caption;
+
+    figure.appendChild(photoBox);
+    figure.appendChild(caption);
+    grid.appendChild(figure);
+  });
+
+  // Colors — set as CSS variables so they apply everywhere
+  const root = document.documentElement.style;
+  root.setProperty('--color1', c.colors.color1);
+  root.setProperty('--color2', c.colors.color2);
+  root.setProperty('--color3', c.colors.color3);
+  root.setProperty('--color4', c.colors.color4);
+  root.setProperty('--color5', c.colors.color5);
+
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
 </script>
 
 </body>
