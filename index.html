@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hannah Nicole Designs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --denim: #3B4A5A;
+    --denim-deep: #2A3644;
+    --mustard: #D9A441;
+    --blush: #E8B8AC;
+    --cream: #FBF6EE;
+    --ink: #2B2B28;
+    --stitch: #C8B89A;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  a { color: inherit; }
+
+  img { max-width: 100%; display: block; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 6vw;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(43,43,40,0.08);
+  }
+  nav .brand{
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  nav ul{
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  nav a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--denim-deep);
+  }
+  nav a:hover{ color: var(--mustard); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    background: var(--denim);
+    color: var(--cream);
+    padding: 7rem 6vw 9rem;
+    overflow: hidden;
+  }
+  .hero-inner{
+    max-width: 640px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero .eyebrow{
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    margin-bottom: 1.3rem;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--blush);
+  }
+  .hero p{
+    font-size: 1.15rem;
+    max-width: 46ch;
+    color: rgba(251,246,238,0.85);
+    margin-bottom: 2.2rem;
+  }
+  .btn{
+    display: inline-block;
+    padding: 0.85rem 1.8rem;
+    background: var(--mustard);
+    color: var(--denim-deep);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  }
+  .btn.secondary{
+    background: transparent;
+    border: 1.5px solid var(--cream);
+    color: var(--cream);
+    margin-left: 0.8rem;
+  }
+
+  /* decorative yarn coil in hero */
+  .yarn-coil{
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 420px;
+    height: 420px;
+    opacity: 0.9;
+    z-index: 1;
+  }
+
+  /* ---------- SCALLOP DIVIDER (signature element) ---------- */
+  .scallop{
+    display: block;
+    width: 100%;
+    height: 34px;
+    margin-top: -1px;
+  }
+  .scallop-cream path{ fill: var(--cream); }
+  .scallop-denim path{ fill: var(--denim); }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    padding: 5.5rem 6vw 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .about .tag{
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--denim);
+    margin-bottom: 0.9rem;
+    display: block;
+  }
+  .about h2{
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    margin-bottom: 1.1rem;
+    color: var(--denim-deep);
+  }
+  .about p{
+    color: #4a4a45;
+    margin-bottom: 1rem;
+  }
+  .about-photo{
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--blush);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 18px 40px rgba(43,43,40,0.15);
+  }
+  .about-photo .placeholder-label{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--denim-deep);
+    background: rgba(255,255,255,0.55);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-section{
+    background: var(--stitch);
+    background: linear-gradient(180deg, var(--cream), #F1E9D8 40%, #F1E9D8 100%);
+    padding: 5rem 6vw 6rem;
+  }
+  .gallery-header{
+    max-width: 1180px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .gallery-header .tag{
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--denim);
+    display: block;
+    margin-bottom: 0.7rem;
+  }
+  .gallery-header h2{
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--denim-deep);
+  }
+  .gallery-grid{
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1.6rem;
+  }
+  .polaroid{
+    background: #fff;
+    padding: 0.9rem 0.9rem 1.6rem;
+    box-shadow: 0 10px 24px rgba(43,43,40,0.14);
+    transition: transform 0.2s ease;
+  }
+  .polaroid:nth-child(odd){ transform: rotate(-2.2deg); }
+  .polaroid:nth-child(even){ transform: rotate(2deg); }
+  .polaroid:hover{ transform: rotate(0) translateY(-4px); }
+  .polaroid .photo-box{
+    aspect-ratio: 1/1;
+    background: var(--denim);
+    background: linear-gradient(135deg, var(--denim), var(--blush));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .polaroid .photo-box span{
+    color: var(--cream);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .polaroid figcaption{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.8rem;
+    color: var(--denim-deep);
+    font-size: 0.95rem;
+  }
+
+  /* ---------- ETSY CTA ---------- */
+  .etsy-cta{
+    background: var(--denim-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 5.5rem 6vw;
+  }
+  .etsy-cta .tag{
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    display: block;
+    margin-bottom: 0.9rem;
+  }
+  .etsy-cta h2{
+    font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+  .etsy-cta p{
+    max-width: 48ch;
+    margin: 0 auto 2rem;
+    color: rgba(251,246,238,0.8);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding: 2.2rem 6vw;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(43,43,40,0.6);
+    background: var(--cream);
+  }
+  footer a{ color: var(--denim); font-weight: 700; text-decoration: none; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 800px){
+    .about{ grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-photo{ order: -1; }
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+    .yarn-coil{ display: none; }
+    nav ul{ gap: 1.1rem; }
+  }
+  @media (max-width: 520px){
+    .gallery-grid{ grid-template-columns: 1fr; }
+    .hero{ padding: 5rem 6vw 7rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* visible focus states */
+  a:focus-visible, .btn:focus-visible{
+    outline: 3px solid var(--mustard);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Hannah Nicole Designs</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#shop">Shop</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <svg class="yarn-coil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#E8B8AC" stroke-width="3" opacity="0.35"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#D9A441" stroke-width="3" opacity="0.4"/>
+    <circle cx="100" cy="100" r="50" fill="none" stroke="#E8B8AC" stroke-width="3" opacity="0.5"/>
+    <circle cx="100" cy="100" r="30" fill="none" stroke="#D9A441" stroke-width="3" opacity="0.6"/>
+    <path d="M100 100 C 140 60, 160 140, 100 170" fill="none" stroke="#FBF6EE" stroke-width="2.5" opacity="0.5"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="eyebrow">Handmade, one stitch at a time</span>
+    <h1>Cozy crochet made for <em>real life</em></h1>
+    <p>Hi, I'm [Your Sister's Name] — I make handmade crochet pieces from my home studio, each one worked one stitch at a time. Blankets, amigurumi, wearables, and more.</p>
+    <a href="#shop" class="btn">Shop the collection</a>
+    <a href="#about" class="btn secondary">My story</a>
+  </div>
+</header>
+
+<svg class="scallop scallop-cream" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M0,0 C 25,40 75,40 100,0 C 125,40 175,40 200,0 C 225,40 275,40 300,0 C 325,40 375,40 400,0 C 425,40 475,40 500,0 C 525,40 575,40 600,0 C 625,40 675,40 700,0 C 725,40 775,40 800,0 C 825,40 875,40 900,0 C 925,40 975,40 1000,0 C 1025,40 1075,40 1100,0 C 1125,40 1175,40 1200,0 L1200,0 L0,0 Z"/>
+</svg>
+
+<section class="about" id="about">
+  <div class="about-photo">
+    <span class="placeholder-label">📷 replace with a photo of your sister / her workspace</span>
+  </div>
+  <div>
+    <span class="tag">About the maker</span>
+    <h2>Every piece starts with a single loop</h2>
+    <p>[Write 2–3 short paragraphs here about your sister: how she started crocheting, what she loves making, and what makes her pieces special — chunky yarn, custom colors, made-to-order, whatever's true.]</p>
+    <p>[Optional: mention turnaround time, custom orders, or where she's based.]</p>
+    <a href="#shop" class="btn" style="background:var(--denim); color:var(--cream);">Visit the shop</a>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header">
+    <span class="tag">Recent makes</span>
+    <h2>A few favorites</h2>
+  </div>
+  <div class="gallery-grid">
+    <figure class="polaroid">
+      <div class="photo-box"><span>Replace with photo 1</span></div>
+      <figcaption>Chunky throw blanket</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="photo-box"><span>Replace with photo 2</span></div>
+      <figcaption>Amigurumi fox</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="photo-box"><span>Replace with photo 3</span></div>
+      <figcaption>Granny square cardigan</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="photo-box"><span>Replace with photo 4</span></div>
+      <figcaption>Market tote bag</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="photo-box"><span>Replace with photo 5</span></div>
+      <figcaption>Baby booties set</figcaption>
+    </figure>
+    <figure class="polaroid">
+      <div class="photo-box"><span>Replace with photo 6</span></div>
+      <figcaption>Scalloped coasters</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="etsy-cta" id="shop">
+  <span class="tag">Ready to take one home?</span>
+  <h2>Find the full collection on Etsy</h2>
+  <p>New pieces are added regularly — hop over to the shop to see what's currently available.</p>
+  <a href="https://www.etsy.com/shop/YOUR-SHOP-NAME" class="btn" target="_blank" rel="noopener">Visit the Etsy shop →</a>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> Hannah Nicole Designs · Handmade with care · <a href="https://www.etsy.com/shop/YOUR-SHOP-NAME" target="_blank" rel="noopener">Etsy</a></p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
