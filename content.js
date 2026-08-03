@@ -86,9 +86,4 @@ window.SITE_CONTENT = {
   // SHOP LINK — your Etsy shop URL
   // ---------------------------------------------------------------
   etsyUrl: "https://www.etsy.com/shop/YOUR-SHOP-NAME",
-
 };
-Ko-fiURL: "https://ko-fi.com/hannahnicoledesigns",
-  
-};
-  
