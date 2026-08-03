@@ -64,10 +64,7 @@ window.SITE_CONTENT = {
     heading: "How it all began",
     photo: "images/about-photo.jpg",
     paragraph1: "Hi! My name is Hannah :)",
-    paragraph2: "As a creative at heart, I started crocheting as a mindful alternative to scrolling, and as a way of keeping my hands busy, and as a creative outlet alongside my academic studies at uni. What began as a little bit of productive fidgeting soon became something I couldn't put down.",
-    paragraph3: "I love how each piece is built from hundreds or thousands of deliberate little stitches, and how every new design is a chance to deepen my understanding of the craft and what I can create.",
-    paragraph4: "That love for the process is what led me here: designing my own crochet patterns. The encouragement I received from sharing my crochet online gave me the confidence to start turning my ideas into patterns, and I'm so excited to share the pieces I've been dreaming up with you! Thank you for being here <3",
-    paragraph5: "Love Hannah x",
+    paragraph2: "As a creative at heart, I started crocheting as a mindful alternative to scrolling, and as a way of keeping my hands busy, and as a creative outlet alongside my academic studies at uni. What began as a little bit of productive fidgeting soon became something I couldn't put down. I love how each piece is built from hundreds or thousands of deliberate little stitches, and how every new design is a chance to deepen my understanding of the craft and what I can create. That love for the process is what led me here: designing my own crochet patterns. The encouragement I received from sharing my crochet online gave me the confidence to start turning my ideas into patterns, and I'm so excited to share the pieces I've been dreaming up with you! Thank you for being here <3, Love Hannah x",
   },
 
   // ---------------------------------------------------------------
