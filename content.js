@@ -75,12 +75,12 @@ window.SITE_CONTENT = {
   // To add a new item, copy one whole line (from { to },) and paste it below.
   // To remove one, delete its whole line.
   // ---------------------------------------------------------------
-  gallery: [
+gallery: [
     { image: "images/crochet_lamp.jpeg", caption: "Crochet lampshade" },
+  ],
   //  { image: "images/gallery-2.jpg", caption: "Amigurumi fox" },
   //  { image: "images/gallery-3.jpg", caption: "Granny square cardigan" },
   //  { image: "images/gallery-4.jpg", caption: "Market tote bag" },
-  //  ],
 
   // ---------------------------------------------------------------
   // SHOP LINK — your Etsy shop URL
