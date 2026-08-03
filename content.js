@@ -23,12 +23,12 @@ window.SITE_CONTENT = {
   // Use a hex code (get one from googling "colour picker").
   // ---------------------------------------------------------------
   colors: {
-    color1:      "#3B4A5A",  // main blue-gray (used in navigation & headings)
-    color2:  "#2A3644",  // darkest blue (footer & "shop" section background)
-    color3:    "#D9A441",  // gold accent (buttons)
-    color4:      "#E8B8AC",  // soft pink accent
-    color5:      "#FBF6EE",  // background color of the page
-  },
+  color1: "#38495A",  // dusty blue (headings & nav)
+  color2: "#1F2A34",  // deep navy (footer/shop bg)
+  color3: "#8E7355",  // warm tan/gold (buttons & accents)
+  color4: "#C9D3D8",  // soft powder blue (secondary accent)
+  color5: "#F8F7F1",  // warm ivory (page background)
+},
 
   // ---------------------------------------------------------------
   // FONTS — pick a heading font and a body font from this list:
@@ -42,7 +42,7 @@ window.SITE_CONTENT = {
   // Type the name exactly as shown above, including capital letters.
   // ---------------------------------------------------------------
   fonts: {
-    heading: "Fraunces",     // used for big titles like "Cozy crochet made for real life"
+    heading: "Cormorant Garamond",     // used for big titles like "Cozy crochet made for real life"
     body: "Nunito Sans",     // used for regular paragraph text
   },
 
@@ -50,19 +50,24 @@ window.SITE_CONTENT = {
   // TOP OF THE PAGE (the big banner)
   // ---------------------------------------------------------------
   hero: {
-    eyebrow: "Handmade, one stitch at a time",   // small text above the headline
-    headingStart: "Cozy crochet made for",        // main headline
-    headingEmphasis: "real life",                 // last bit of headline, shown in italic pink
-    intro: "Hi, I'm Hannah! I make handmade crochet pieces from my home studio. Jumpers, dresses, summer tops and more.",
+    eyebrow: "Inspired by the joy of creating",
+    headingStart: "Timeless crochet patterns for",
+    headingEmphasis: "home and wardrobe",
+    intro: "Hi, I'm Hannah! I design clear crochet patterns for the pieces I dream up, and hope you enjoy bringing them to life in a way that feels truly yours, creating something to treasure long after the final stitch.",
   },
 
   // ---------------------------------------------------------------
   // ABOUT SECTION
   // ---------------------------------------------------------------
-  about: {
-    photo: "images/about-photo.jpg",  // put a photo of you or your workspace in the images folder with this name
-    paragraph1: "Write 2–3 sentences here about how you started crocheting and what you love making.",
-    paragraph2: "Optional: write something else here.",
+ about: {
+    tag: "About me :)",
+    heading: "How it all began",
+    photo: "images/about-photo.jpg",
+    paragraph1: "Hi! My name is Hannah :)",
+    paragraph2: "As a creative at heart, I started crocheting as a mindful alternative to scrolling, and as a way of keeping my hands busy, and as a creative outlet alongside my academic studies at uni. What began as a little bit of productive fidgeting soon became something I couldn't put down.",
+    paragraph3: "I love how each piece is built from hundreds or thousands of deliberate little stitches, and how every new design is a chance to deepen my understanding of the craft and what I can create.",
+    paragraph4: "That love for the process is what led me here: designing my own crochet patterns. The encouragement I received from sharing my crochet online gave me the confidence to start turning my ideas into patterns, and I'm so excited to share the pieces I've been dreaming up with you! Thank you for being here <3",
+    paragraph5: "Love Hannah x",
   },
 
   // ---------------------------------------------------------------
@@ -72,10 +77,10 @@ window.SITE_CONTENT = {
   // ---------------------------------------------------------------
   gallery: [
     { image: "images/crochet_lamp.jpeg", caption: "Crochet lampshade" },
-    { image: "images/gallery-2.jpg", caption: "Amigurumi fox" },
-    { image: "images/gallery-3.jpg", caption: "Granny square cardigan" },
-    { image: "images/gallery-4.jpg", caption: "Market tote bag" },
-  ],
+  //  { image: "images/gallery-2.jpg", caption: "Amigurumi fox" },
+  //  { image: "images/gallery-3.jpg", caption: "Granny square cardigan" },
+  //  { image: "images/gallery-4.jpg", caption: "Market tote bag" },
+  //  ],
 
   // ---------------------------------------------------------------
   // SHOP LINK — your Etsy shop URL
@@ -83,3 +88,7 @@ window.SITE_CONTENT = {
   etsyUrl: "https://www.etsy.com/shop/YOUR-SHOP-NAME",
 
 };
+Ko-fiURL: "https://ko-fi.com/hannahnicoledesigns",
+  
+};
+  
