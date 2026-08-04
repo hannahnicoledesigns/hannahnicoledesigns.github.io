@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hannah Nicole Designs</title>
+<title>Hannah Nicole Designs — Handmade Crochet Patterns</title>
+<meta name="description" content="Handmade crochet patterns designed by Hannah, one deliberate stitch at a time. Clear, photo-guided patterns for home and wardrobe.">
+<meta property="og:title" content="Hannah Nicole Designs">
+<meta property="og:description" content="Handmade crochet patterns designed by Hannah, one deliberate stitch at a time.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/crochet_lamp.jpeg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -106,22 +112,21 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--color2);
+    color: var(--color1);
   }
   nav a:hover{ color: var(--color3); }
 
   /* ---------- HERO ---------- */
   .hero{
     position: relative;
-    background: var(--color1);
-    color: var(--color5);
-    padding: 7rem 6vw 9rem;
-    overflow: hidden;
+    background: var(--color5);
+    color: var(--ink);
+    padding: 7rem 6vw 8rem;
+    text-align: center;
   }
   .hero-inner{
     max-width: 640px;
-    position: relative;
-    z-index: 2;
+    margin: 0 auto;
   }
   .hero .eyebrow{
     display: inline-block;
@@ -129,28 +134,31 @@
     font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color3);
+    color: var(--color1);
+    opacity: 0.65;
     margin-bottom: 1.2rem;
   }
   .hero h1{
     font-size: clamp(2.4rem, 5vw, 4rem);
     margin-bottom: 1.3rem;
+    color: var(--color1);
   }
   .hero h1 em{
     font-style: italic;
-    color: var(--color4);
+    color: var(--color3);
   }
   .hero p{
     font-size: 1.15rem;
     max-width: 46ch;
-    color: rgba(251,246,238,0.85);
-    margin-bottom: 2.2rem;
+    margin: 0 auto 2.2rem;
+    color: var(--color1);
+    opacity: 0.78;
   }
   .btn{
     display: inline-block;
     padding: 0.85rem 1.8rem;
     background: var(--color3);
-    color: var(--color2);
+    color: var(--color5);
     font-weight: 700;
     text-decoration: none;
     border-radius: 3px;
@@ -161,23 +169,9 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   }
-  .btn.secondary{
-    background: transparent;
-    border: 1.5px solid var(--color5);
+  .btn.kofi{
+    background: var(--color1);
     color: var(--color5);
-    margin-left: 0.8rem;
-  }
-
-  /* decorative yarn coil in hero */
-  .yarn-coil{
-    position: absolute;
-    right: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 420px;
-    height: 420px;
-    opacity: 0.9;
-    z-index: 1;
   }
 
   /* ---------- SCALLOP DIVIDER (signature element) ---------- */
@@ -189,6 +183,46 @@
   }
   .scallop-light path{ fill: var(--color5); }
   .scallop-dark path{ fill: var(--color1); }
+
+  /* ---------- SOCIAL LINKS ---------- */
+  .social-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.4rem;
+  }
+  .social-row a{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border: 1.5px solid rgba(43,43,40,0.18);
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color2);
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  }
+  .social-row a:hover{
+    border-color: var(--color3);
+    color: var(--color3);
+    transform: translateY(-2px);
+  }
+  footer .social-row{
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+  }
+  footer .social-row a{ color: var(--color1); }
+  .etsy-cta .social-row{ justify-content: center; margin-top: 1.8rem; }
+  .etsy-cta .social-row a{ border-color: rgba(251,246,238,0.3); color: var(--color5); }
+  .etsy-cta .social-row a:hover{ border-color: var(--color3); color: var(--color3); }
+  .etsy-cta .btn.kofi{
+    background: transparent;
+    border: 1.5px solid var(--color5);
+    color: var(--color5);
+  }
+  .etsy-cta .btn{ margin: 0 0.4rem 0.6rem; }
 
   /* ---------- ABOUT ---------- */
   .about{
@@ -217,6 +251,26 @@
   .about p{
     color: #4a4a45;
     margin-bottom: 1rem;
+  }
+  .about .signature{
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--color2);
+    white-space: pre-line;
+    margin: 1.4rem 0 1.8rem;
+  }
+  .about-follow{
+    margin-top: 0.4rem;
+  }
+  .about-follow .label{
+    display: block;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color1);
+    margin-bottom: 0.7rem;
   }
   .about-photo{
     position: relative;
@@ -275,9 +329,21 @@
   .gallery-grid{
     max-width: 1180px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem 1.6rem;
+  }
+  .gallery-grid .polaroid-link{
+    display: block;
+    width: 340px;
+    max-width: 100%;
+    text-decoration: none;
+    border-radius: 3px;
+  }
+  .gallery-grid .polaroid-link:focus-visible{
+    outline: 3px solid var(--color3);
+    outline-offset: 4px;
   }
   .polaroid{
     background: #fff;
@@ -285,9 +351,9 @@
     box-shadow: 0 10px 24px rgba(43,43,40,0.14);
     transition: transform 0.2s ease;
   }
-  .polaroid:nth-child(odd){ transform: rotate(-2.2deg); }
-  .polaroid:nth-child(even){ transform: rotate(2deg); }
-  .polaroid:hover{ transform: rotate(0) translateY(-4px); }
+  .gallery-grid .polaroid-link:nth-child(odd) .polaroid{ transform: rotate(-2.2deg); }
+  .gallery-grid .polaroid-link:nth-child(even) .polaroid{ transform: rotate(2deg); }
+  .polaroid-link:hover .polaroid, .polaroid-link:focus-visible .polaroid{ transform: rotate(0) translateY(-4px); }
   .polaroid .photo-box{
     position: relative;
     aspect-ratio: 1/1;
@@ -363,12 +429,9 @@
   @media (max-width: 800px){
     .about{ grid-template-columns: 1fr; gap: 2.5rem; }
     .about-photo{ order: -1; }
-    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
-    .yarn-coil{ display: none; }
     nav ul{ gap: 1.1rem; }
   }
   @media (max-width: 520px){
-    .gallery-grid{ grid-template-columns: 1fr; }
     .hero{ padding: 5rem 6vw 7rem; }
   }
 
@@ -395,19 +458,11 @@
 </nav>
 
 <header class="hero">
-  <svg class="yarn-coil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="100" cy="100" r="90" fill="none" stroke="#E8B8AC" stroke-width="3" opacity="0.35"/>
-    <circle cx="100" cy="100" r="70" fill="none" stroke="#D9A441" stroke-width="3" opacity="0.4"/>
-    <circle cx="100" cy="100" r="50" fill="none" stroke="#E8B8AC" stroke-width="3" opacity="0.5"/>
-    <circle cx="100" cy="100" r="30" fill="none" stroke="#D9A441" stroke-width="3" opacity="0.6"/>
-    <path d="M100 100 C 140 60, 160 140, 100 170" fill="none" stroke="#FBF6EE" stroke-width="2.5" opacity="0.5"/>
-  </svg>
   <div class="hero-inner">
     <span class="eyebrow" data-content="hero-eyebrow">Handmade, one stitch at a time</span>
     <h1><span data-content="hero-heading-start">Cozy crochet made for</span> <em data-content="hero-heading-emphasis">real life</em></h1>
     <p data-content="hero-intro">Hi, I'm Hannah — I make handmade crochet pieces from my home studio, each one worked one stitch at a time. Blankets, amigurumi, wearables, and more.</p>
     <a href="#shop" class="btn">Shop the collection</a>
-    <a href="#about" class="btn secondary">My story</a>
   </div>
 </header>
 
@@ -420,11 +475,15 @@
     <span class="placeholder-label">📷 add a photo in content.js</span>
   </div>
   <div>
-    <span class="tag">About the maker</span>
-    <h2>Every piece starts with a single loop</h2>
-    <p data-content="about-p1">Write 2–3 sentences here about how you started crocheting and what you love making.</p>
-    <p data-content="about-p2">Optional: mention turnaround time, custom orders, or where you're based.</p>
+    <span class="tag" data-content="about-tag">About the maker</span>
+    <h2 data-content="about-heading">Every piece starts with a single loop</h2>
+    <div data-content="about-paragraphs"></div>
+    <p class="signature" data-content="about-signature"></p>
     <a href="#shop" class="btn" style="background:var(--color1); color:var(--color5);">Visit the shop</a>
+    <div class="about-follow">
+      <span class="label">Follow along</span>
+      <div class="social-row" data-content="about-socials"></div>
+    </div>
   </div>
 </section>
 
@@ -441,12 +500,15 @@
 <section class="etsy-cta" id="shop">
   <span class="tag">Ready to make one yourself?</span>
   <h2>Find the full collection on Etsy</h2>
-  <p>New patterns are added regularly — hop over to the shop to see what's currently available.</p>
+  <p>New patterns are added regularly — hop over to the shop to see what's currently available. If you'd like to support the designs another way, you can also buy me a coffee on Ko-fi.</p>
   <a href="#" class="btn" target="_blank" rel="noopener" data-content="etsy-link">Visit the Etsy shop →</a>
+  <a href="#" class="btn kofi" target="_blank" rel="noopener" data-content="kofi-link">Support on Ko-fi →</a>
+  <div class="social-row" data-content="shop-socials"></div>
 </section>
 
 <footer>
-  <p>&copy; <span id="year"></span> <span data-content="brandName">Hannah Nicole Designs</span> · Handmade with care · <a href="#" target="_blank" rel="noopener" data-content="etsy-link">Etsy</a></p>
+  <p>&copy; <span id="year"></span> <span data-content="brandName">Hannah Nicole Designs</span> · Handmade with care</p>
+  <div class="social-row" data-content="footer-socials"></div>
 </footer>
 
 <script>
@@ -457,6 +519,7 @@
     const img = document.createElement('img');
     img.src = src;
     img.alt = altText;
+    img.loading = 'lazy';
     img.onerror = function(){
       img.remove();
       const label = document.createElement('span');
@@ -468,14 +531,29 @@
     container.appendChild(img);
   }
 
+  function renderSocialRow(container, socials){
+    if (!container || !socials) return;
+    container.innerHTML = '';
+    Object.keys(socials).forEach(key => {
+      const s = socials[key];
+      if (!s || !s.url) return;
+      const a = document.createElement('a');
+      a.href = s.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = s.label + ' ' + s.handle;
+      container.appendChild(a);
+    });
+  }
+
   // Text fields, matched by their data-content attribute
   const textFields = {
     'hero-eyebrow': c.hero.eyebrow,
     'hero-heading-start': c.hero.headingStart,
     'hero-heading-emphasis': c.hero.headingEmphasis,
     'hero-intro': c.hero.intro,
-    'about-p1': c.about.paragraph1,
-    'about-p2': c.about.paragraph2,
+    'about-tag': c.about.tag,
+    'about-heading': c.about.heading,
   };
   Object.keys(textFields).forEach(key => {
     document.querySelectorAll('[data-content="' + key + '"]').forEach(el => {
@@ -483,15 +561,39 @@
     });
   });
 
-  // Brand name (appears twice: nav + footer)
+  // About paragraphs — one <p> per line in content.js
+  const aboutParaContainer = document.querySelector('[data-content="about-paragraphs"]');
+  if (aboutParaContainer && Array.isArray(c.about.paragraphs)) {
+    aboutParaContainer.innerHTML = '';
+    c.about.paragraphs.forEach(text => {
+      const p = document.createElement('p');
+      p.textContent = text;
+      aboutParaContainer.appendChild(p);
+    });
+  }
+
+  // About signature
+  document.querySelectorAll('[data-content="about-signature"]').forEach(el => {
+    el.textContent = c.about.signature || '';
+  });
+
+  // Brand name (appears in nav + footer)
   document.querySelectorAll('[data-content="brandName"]').forEach(el => {
     el.textContent = c.brandName;
   });
 
-  // Etsy link (appears twice: CTA button + footer link)
+  // Etsy / Ko-fi links
   document.querySelectorAll('[data-content="etsy-link"]').forEach(el => {
     el.href = c.etsyUrl;
   });
+  document.querySelectorAll('[data-content="kofi-link"]').forEach(el => {
+    el.href = (c.socials && c.socials.kofi && c.socials.kofi.url) || '#';
+  });
+
+  // Social link rows
+  renderSocialRow(document.querySelector('[data-content="about-socials"]'), c.socials ? { tiktok: c.socials.tiktok, instagram: c.socials.instagram } : null);
+  renderSocialRow(document.querySelector('[data-content="shop-socials"]'), c.socials ? { etsy: c.socials.etsy, kofi: c.socials.kofi } : null);
+  renderSocialRow(document.querySelector('[data-content="footer-socials"]'), c.socials);
 
   // About photo
   setImageOrPlaceholder(
@@ -501,10 +603,16 @@
     '📷 add a photo in content.js'
   );
 
-  // Gallery — built fresh from the list in content.js
+  // Gallery — built fresh from the list in content.js.
+  // Each photo links through to its own pattern page (pattern.html?slug=...).
   const grid = document.querySelector('[data-content="gallery-grid"]');
   grid.innerHTML = '';
   c.gallery.forEach(item => {
+    const link = document.createElement('a');
+    link.className = 'polaroid-link';
+    link.href = item.slug ? ('pattern.html?slug=' + encodeURIComponent(item.slug)) : '#shop';
+    link.setAttribute('aria-label', 'View the ' + item.caption + ' pattern');
+
     const figure = document.createElement('figure');
     figure.className = 'polaroid';
 
@@ -517,7 +625,8 @@
 
     figure.appendChild(photoBox);
     figure.appendChild(caption);
-    grid.appendChild(figure);
+    link.appendChild(figure);
+    grid.appendChild(link);
   });
 
   // Colors — set as CSS variables so they apply everywhere
