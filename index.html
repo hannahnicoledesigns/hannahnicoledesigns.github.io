@@ -1,645 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hannah Nicole Designs — Handmade Crochet Patterns</title>
-<meta name="description" content="Handmade crochet patterns designed by Hannah, one deliberate stitch at a time. Clear, photo-guided patterns for home and wardrobe.">
-<meta property="og:title" content="Hannah Nicole Designs">
-<meta property="og:description" content="Handmade crochet patterns designed by Hannah, one deliberate stitch at a time.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="images/crochet_lamp.jpeg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Hannah's editable content lives in content.js, not here. -->
-<script src="content.js"></script>
-<script>
-  // ---------------------------------------------------------------
-  // FONT LOADER — reads content.js and loads whichever fonts Hannah
-  // picked from Google Fonts. To add a new option to the picklist,
-  // add an entry here AND to the comment in content.js.
-  // ---------------------------------------------------------------
-  (function(){
-    var FONT_PRESETS = {
-      "Fraunces":            { google: "Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500", stack: "'Fraunces', serif" },
-      "Playfair Display":    { google: "Playfair+Display:ital,wght@0,400;0,600;0,700;1,500", stack: "'Playfair Display', serif" },
-      "Cormorant Garamond":  { google: "Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500", stack: "'Cormorant Garamond', serif" },
-      "Nunito Sans":         { google: "Nunito+Sans:wght@400;600;700", stack: "'Nunito Sans', sans-serif" },
-      "Quicksand":           { google: "Quicksand:wght@400;600;700", stack: "'Quicksand', sans-serif" },
-      "Poppins":             { google: "Poppins:wght@400;500;600;700", stack: "'Poppins', sans-serif" },
-      "Caveat":              { google: "Caveat:wght@500;600;700", stack: "'Caveat', cursive" },
-    };
-    var c = window.SITE_CONTENT || {};
-    var fontChoices = c.fonts || {};
-    var heading = FONT_PRESETS[fontChoices.heading] || FONT_PRESETS["Fraunces"];
-    var body = FONT_PRESETS[fontChoices.body] || FONT_PRESETS["Nunito Sans"];
-
-    var families = [heading.google];
-    if (body.google !== heading.google) families.push(body.google);
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?' + families.map(function(f){ return 'family=' + f; }).join('&') + '&display=swap';
-    document.head.appendChild(link);
-
-    document.documentElement.style.setProperty('--font-heading', heading.stack);
-    document.documentElement.style.setProperty('--font-body', body.stack);
-  })();
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hannah Nicole Designs — Crochet Patterns</title>
+<meta name="description" content="Crochet patterns for your home and wardrobe, designed by Hannah.">
 <style>
-  /* ---------- COLORS ----------
-     Don't edit these directly — go to content.js instead.
-     JavaScript fills in these values automatically when the page loads. */
-  :root{
-    --color1: #3B4A5A;
-    --color2: #2A3644;
-    --color3: #D9A441;
-    --color4: #E8B8AC;
-    --color5: #FBF6EE;
-    --ink: #2B2B28;
-    --stitch: #C8B89A;
-    --font-heading: 'Fraunces', serif;
-    --font-body: 'Nunito Sans', sans-serif;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Mulish:wght@400;500;600;700&display=swap');
 
-  *{ box-sizing: border-box; margin:0; padding:0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F8F7F1; font-family:'Mulish',sans-serif; color:#38495A; min-height:100vh; }
+  ::selection { background: #E8B8AC; color: #38495A; }
+  a { color: #38495A; }
+  a:hover { color: #8E7355; }
+  details > summary { cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
 
-  html{ scroll-behavior: smooth; }
+  .hero-section { grid-template-columns: 1fr 1.4fr 1fr; display:grid; align-items:center; gap:0; }
+  .hero-cluster { grid-template-columns: 1fr 1fr 1fr; display:grid; gap:2px; }
+  @media (max-width: 900px) {
+    .hero-section { grid-template-columns: 0.7fr 1.6fr 0.7fr; }
+    .hero-cluster { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero-section { grid-template-columns: 0.55fr 1.9fr 0.55fr; }
+    .hero-cluster { grid-template-columns: 1fr; }
+  }
+  .hero-cell { overflow:hidden; }
 
-  body{
-    font-family: var(--font-body);
-    color: var(--ink);
-    background: var(--color5);
-    line-height: 1.6;
-  }
+  /* View toggling (home <-> pattern detail) */
+  #detail-view { display: none; }
+  body.view-detail #home-view { display: none; }
+  body.view-detail #detail-view { display: block; }
+  body.view-detail #main-nav { display: none; }
 
-  h1, h2, h3{
-    font-family: var(--font-heading);
-    font-weight: 600;
-    line-height: 1.1;
-  }
+  /* Hover states (replace the design tool's style-hover attribute) */
+  .nav-link:hover, .social-link:hover, .footer-link:hover { text-decoration: underline; }
+  .fade-link:hover { opacity: 0.6; }
+  .btn-primary:hover { background: #38495A !important; }
+  .btn-secondary:hover { background: #8E7355 !important; }
+  .btn-contact:hover { text-decoration: underline; background: #dba594 !important; }
+  .back-link:hover { color: #38495A; }
 
-  a { color: inherit; }
-
-  img { max-width: 100%; display: block; }
-
-  /* ---------- NAV ---------- */
-  nav{
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 6vw;
-    background: var(--color5);
-    border-bottom: 1px solid rgba(43,43,40,0.08);
-  }
-  nav .brand{
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-  }
-  nav ul{
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  nav a{
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--color1);
-  }
-  nav a:hover{ color: var(--color3); }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position: relative;
-    background: var(--color5);
-    color: var(--ink);
-    padding: 7rem 6vw 8rem;
-    text-align: center;
-  }
-  .hero-inner{
-    max-width: 760px;
-    margin: 0 auto;
-  }
-  .hero .eyebrow{
-    display: inline-block;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color1);
-    opacity: 0.65;
-    margin-bottom: 1.2rem;
-  }
-  .hero h1{
-    font-size: clamp(1.9rem, 3.6vw, 3rem);
-    margin-bottom: 1.3rem;
-    color: var(--color1);
-  }
-  .hero h1 em{
-    font-style: italic;
-    color: var(--color3);
-  }
-  .hero p{
-    font-size: 1.15rem;
-    max-width: 46ch;
-    margin: 0 auto 2.2rem;
-    color: var(--color1);
-    opacity: 0.78;
-  }
-  .btn{
-    display: inline-block;
-    padding: 0.85rem 1.8rem;
-    background: var(--color3);
-    color: var(--color5);
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 3px;
-    font-size: 0.95rem;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .btn:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  }
-  .btn.kofi{
-    background: var(--color1);
-    color: var(--color5);
-  }
-
-  /* ---------- SCALLOP DIVIDER (signature element) ---------- */
-  .scallop{
-    display: block;
-    width: 100%;
-    height: 34px;
-    margin-top: -1px;
-  }
-  .scallop-light path{ fill: var(--color5); }
-  .scallop-dark path{ fill: var(--color1); }
-
-  /* ---------- SOCIAL LINKS ---------- */
-  .social-row{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    margin-top: 1.4rem;
-  }
-  .social-row a{
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.55rem 1rem;
-    border: 1.5px solid rgba(43,43,40,0.18);
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--color2);
-    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
-  }
-  .social-row a:hover{
-    border-color: var(--color3);
-    color: var(--color3);
-    transform: translateY(-2px);
-  }
-  footer .social-row{
-    justify-content: center;
-    margin: 0 auto 1.2rem;
-  }
-  footer .social-row a{ color: var(--color1); }
-  .etsy-cta .social-row{ justify-content: center; margin-top: 1.8rem; }
-  .etsy-cta .social-row a{ border-color: rgba(251,246,238,0.3); color: var(--color5); }
-  .etsy-cta .social-row a:hover{ border-color: var(--color3); color: var(--color3); }
-  .etsy-cta .btn.kofi{
-    background: transparent;
-    border: 1.5px solid var(--color5);
-    color: var(--color5);
-  }
-  .etsy-cta .btn{ margin: 0 0.4rem 0.6rem; }
-
-  /* ---------- ABOUT ---------- */
-  .about{
-    padding: 5.5rem 6vw 6rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-  .about .tag{
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color1);
-    margin-bottom: 0.9rem;
-    display: block;
-  }
-  .about h2{
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    margin-bottom: 1.1rem;
-    color: var(--color2);
-  }
-  .about p{
-    color: #4a4a45;
-    margin-bottom: 1rem;
-  }
-  .about .signature{
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: 1.3rem;
-    color: var(--color2);
-    white-space: pre-line;
-    margin: 1.4rem 0 1.8rem;
-  }
-  .about-follow{
-    margin-top: 0.4rem;
-  }
-  .about-follow .label{
-    display: block;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color1);
-    margin-bottom: 0.7rem;
-  }
-  .about-photo{
-    position: relative;
-    aspect-ratio: 4/5;
-    border-radius: 6px;
-    overflow: hidden;
-    background: var(--color4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 18px 40px rgba(43,43,40,0.15);
-  }
-  .about-photo img{
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .about-photo .placeholder-label{
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--color2);
-    background: rgba(255,255,255,0.55);
-    padding: 0.4rem 0.9rem;
-    border-radius: 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ---------- GALLERY ---------- */
-  .gallery-section{
-    background: var(--stitch);
-    background: linear-gradient(180deg, var(--color5), #F1E9D8 40%, #F1E9D8 100%);
-    padding: 5rem 6vw 6rem;
-  }
-  .gallery-header{
-    max-width: 1180px;
-    margin: 0 auto 3rem;
-    text-align: center;
-  }
-  .gallery-header .tag{
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color1);
-    display: block;
-    margin-bottom: 0.7rem;
-  }
-  .gallery-header h2{
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    color: var(--color2);
-  }
-  .gallery-grid{
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem 1.6rem;
-  }
-  .gallery-grid .polaroid-link{
-    display: block;
-    width: 340px;
-    max-width: 100%;
-    text-decoration: none;
-    border-radius: 3px;
-  }
-  .gallery-grid .polaroid-link:focus-visible{
-    outline: 3px solid var(--color3);
-    outline-offset: 4px;
-  }
-  .polaroid{
-    background: #fff;
-    padding: 0.9rem 0.9rem 1.6rem;
-    box-shadow: 0 10px 24px rgba(43,43,40,0.14);
-    transition: transform 0.2s ease;
-  }
-  .gallery-grid .polaroid-link:nth-child(odd) .polaroid{ transform: rotate(-2.2deg); }
-  .gallery-grid .polaroid-link:nth-child(even) .polaroid{ transform: rotate(2deg); }
-  .polaroid-link:hover .polaroid, .polaroid-link:focus-visible .polaroid{ transform: rotate(0) translateY(-4px); }
-  .polaroid .photo-box{
-    position: relative;
-    aspect-ratio: 1/1;
-    background: var(--color1);
-    background: linear-gradient(135deg, var(--color1), var(--color4));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .polaroid .photo-box img{
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .polaroid .photo-box span{
-    color: var(--color5);
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-align: center;
-    padding: 0 1rem;
-    position: relative;
-    z-index: 1;
-  }
-  .polaroid figcaption{
-    font-family: var(--font-heading);
-    font-style: italic;
-    text-align: center;
-    margin-top: 0.8rem;
-    color: var(--color2);
-    font-size: 0.95rem;
-  }
-
-  /* ---------- ETSY CTA ---------- */
-  .etsy-cta{
-    background: var(--color2);
-    color: var(--color5);
-    text-align: center;
-    padding: 5.5rem 6vw;
-  }
-  .etsy-cta .tag{
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color3);
-    display: block;
-    margin-bottom: 0.9rem;
-  }
-  .etsy-cta h2{
-    font-size: clamp(1.8rem, 3.4vw, 2.8rem);
-    margin-bottom: 1rem;
-  }
-  .etsy-cta p{
-    max-width: 48ch;
-    margin: 0 auto 2rem;
-    color: rgba(251,246,238,0.8);
-  }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding: 2.2rem 6vw;
-    text-align: center;
-    font-size: 0.85rem;
-    color: rgba(43,43,40,0.6);
-    background: var(--color5);
-  }
-  footer a{ color: var(--color1); font-weight: 700; text-decoration: none; }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 800px){
-    .about{ grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-photo{ order: -1; }
-    nav ul{ gap: 1.1rem; }
-  }
-  @media (max-width: 520px){
-    .hero{ padding: 5rem 6vw 7rem; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ transition: none !important; scroll-behavior: auto !important; }
-  }
-
-  /* visible focus states */
-  a:focus-visible, .btn:focus-visible{
-    outline: 3px solid var(--color3);
-    outline-offset: 2px;
+  @media (max-width: 700px) {
+    #about { grid-template-columns: 1fr !important; }
+    #detail-grid { grid-template-columns: 1fr !important; }
   }
 </style>
 </head>
 <body>
+<div style="font-family:'Mulish',sans-serif; color:#38495A; background:#F8F7F1; min-height:100vh;">
 
-<nav>
-  <div class="brand" data-content="brandName">Hannah Nicole Designs</div>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#shop">Shop</a></li>
-  </ul>
-</nav>
-
-<header class="hero">
-  <div class="hero-inner">
-    <span class="eyebrow" data-content="hero-eyebrow">Handmade, one stitch at a time</span>
-    <h1><span data-content="hero-heading-start">Cozy crochet made for</span> <em data-content="hero-heading-emphasis">real life</em></h1>
-    <p data-content="hero-intro">Hi, I'm Hannah — I make handmade crochet pieces from my home studio, each one worked one stitch at a time. Blankets, amigurumi, wearables, and more.</p>
-    <a href="#shop" class="btn">Shop the collection</a>
-  </div>
-</header>
-
-<svg class="scallop scallop-light" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M0,0 C 25,40 75,40 100,0 C 125,40 175,40 200,0 C 225,40 275,40 300,0 C 325,40 375,40 400,0 C 425,40 475,40 500,0 C 525,40 575,40 600,0 C 625,40 675,40 700,0 C 725,40 775,40 800,0 C 825,40 875,40 900,0 C 925,40 975,40 1000,0 C 1025,40 1075,40 1100,0 C 1125,40 1175,40 1200,0 L1200,0 L0,0 Z"/>
-</svg>
-
-<section class="about" id="about">
-  <div class="about-photo" data-content="about-photo-container">
-    <span class="placeholder-label">📷 add a photo in content.js</span>
-  </div>
-  <div>
-    <span class="tag" data-content="about-tag">About the maker</span>
-    <h2 data-content="about-heading">Every piece starts with a single loop</h2>
-    <div data-content="about-paragraphs"></div>
-    <p class="signature" data-content="about-signature"></p>
-    <a href="#shop" class="btn" style="background:var(--color1); color:var(--color5);">Visit the shop</a>
-    <div class="about-follow">
-      <span class="label">Follow along</span>
-      <div class="social-row" data-content="about-socials"></div>
+  <!-- NAV -->
+  <header style="position:sticky; top:0; z-index:50; background:#38495A; backdrop-filter:blur(6px); border-bottom:1px solid #38495A;">
+    <div style="max-width:1140px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <a href="#" id="nav-home" style="font-family:'EB Garamond',serif; font-size:24px; font-weight:600; text-decoration:none; color:#F8F7F1; letter-spacing:0.3px;">Hannah Nicole Designs</a>
+      <nav id="main-nav" style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+        <a href="#gallery" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">Patterns</a>
+        <a href="#shop" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">Shop</a>
+        <a href="#about" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">About</a>
+        <a href="#faq" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">FAQ</a>
+        <a href="#contact" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">Contact</a>
+      </nav>
+      <div style="display:flex; gap:14px;">
+        <a href="https://www.instagram.com/hannahnicoledesigns.uk" target="_blank" rel="noopener" class="social-link" style="text-decoration:none; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; letter-spacing:0.4px; color:#E8B8AC;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B8AC" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="#E8B8AC" stroke="none"></circle></svg>Instagram</a>
+        <a href="https://www.tiktok.com/@loops.by.hannah?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-link" style="text-decoration:none; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; letter-spacing:0.4px; color:#E8B8AC;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B8AC" stroke-width="2"><path d="M14 3v10.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c0 2.5 2 4.5 4.5 4.5"></path></svg>TikTok</a>
+      </div>
     </div>
+  </header>
+
+  <!-- HOME VIEW -->
+  <div id="home-view">
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-cluster">
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-9.jpg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-5.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; object-position:50% 32%; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-3.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-1.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-2.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-8.jpg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 32px; position: relative">
+        <p style="font-family:'EB Garamond',serif; font-style:italic; font-size:15px; color:#8E7355; margin:0 0 10px; letter-spacing:0.3px;">Born from the joy of creating</p>
+        <h1 style="font-family: 'EB Garamond',serif; font-size: 34px; line-height: 1.2; font-weight: 600; margin: 0 0 16px; max-width:560px;">Crochet patterns for your <span style="color: #8E7355;">home and wardrobe</span></h1>
+        <p style="font-family:'EB Garamond',serif; font-size: 15px; line-height: 1.6; color: #38495A; margin: 0 0 24px; max-width:440px;">Hi, I'm Hannah! I design crochet patterns for the pieces I dream up, and hope you enjoy bringing them to life in a way that feels truly yours.</p>
+        <div style="display:flex; gap:28px; flex-wrap:wrap; justify-content:center;">
+          <a href="#gallery" class="fade-link" style="text-decoration:none; color:#8E7355; font-size:14px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; border-bottom:2px solid #8E7355; padding-bottom:4px; transition:opacity 0.25s ease;">Browse Patterns</a>
+          <a href="#shop" id="shop-centered-link" class="fade-link" style="text-decoration:none; color:#38495A; font-size:14px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; border-bottom:2px solid #38495A; padding-bottom:4px; transition:opacity 0.25s ease;">Shop Patterns</a>
+        </div>
+      </div>
+      <div class="hero-cluster">
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-4.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-7.jpeg" alt="Crochet detail" style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%; transform: scale(2.4); display: block; position: relative; top: -40px"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="photo-lamp-3.jpeg" alt="Filet crochet piece" style="width: 122px; height: 143px; object-fit: cover; transform: rotate(90deg) scale(3.6) translateX(-8%); display: block; position: relative; top: 6px; left: 35px"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-10.jpg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="hero-6.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="uploads/IMG_0861-a0b01462.JPG" alt="Hannah smiling" style="width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;"></div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" style="max-width:1140px; margin:0 auto; padding:64px 32px 80px;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <p style="font-family:'EB Garamond',serif; font-style:italic; font-size:17px; color:#8E7355; margin:0 0 8px;">The patterns</p>
+        <h2 style="font-family:'EB Garamond',serif; font-size:38px; font-weight:600; margin:0;">Latest release</h2>
+      </div>
+      <div style="max-width:760px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid #C9D3D8; border-radius:20px; overflow:hidden; background:#fff;">
+        <div style="aspect-ratio:1/1; overflow:hidden;">
+          <img src="photo-lamp-v2.jpg" alt="Inigo Flowers Lampshade, lit" style="width: 296px; height: 358px; object-fit: cover; object-position: center 25%; transform: scale(1.6); display: block; position: relative; top: -80px; left: 40px">
+        </div>
+        <div style="padding:36px; display:flex; flex-direction:column; justify-content:center;">
+          <span style="align-self:flex-start; background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; margin-bottom:14px;">Intermediate</span>
+          <h3 style="font-family:'EB Garamond',serif; font-size:26px; font-weight:600; margin:0 0 10px;">Inigo Flowers Lampshade</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:#38495A; margin:0 0 18px;">A filet-crochet lampshade cover worked in delicate floral motifs. Complete with a full guide to filet crochet for crocheters trying it for the first time.<br></p>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <span style="font-family:'EB Garamond',serif; font-size:22px; font-weight:600;">£7.99</span>
+            <a href="#" id="view-pattern-link" class="btn-primary" style="text-decoration:none; background:#8E7355; color:#F8F7F1; padding:11px 22px; border-radius:8px; font-size:14px; font-weight:700; transition:background 0.25s ease;">View Pattern</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" style="max-width:1140px; margin:0 auto; padding:80px 32px; display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center;">
+      <div style="aspect-ratio:4/5; border-radius:16px; overflow:hidden; border:1px solid #8E7355; box-shadow:0 10px 24px rgba(56,73,90,0.1);">
+        <img src="about-photo.jpg" alt="Hannah" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block; filter:sepia(0.14) saturate(1.02) contrast(0.98) brightness(1.01);">
+      </div>
+      <div>
+        <p style="font-family:'EB Garamond',serif; font-style:italic; font-size:17px; color:#8E7355; margin:0 0 8px;">About</p>
+        <h2 style="font-family:'EB Garamond',serif; font-size:34px; font-weight:600; margin:0 0 20px;">Hi, I'm Hannah &lt;3</h2>
+        <div style="font-size:16px; line-height:1.75; color:#38495A; margin:0 0 16px; font-family:'EB Garamond',serif;">
+          <p style="margin:0 0 1rem;">As a creative at heart, I started crocheting as a mindful alternative to scrolling and as a productive way of keeping my hands busy, and I quickly found it to be the perfect creative outlet alongside my academic studies at uni.</p>
+          <p style="margin:0 0 1rem;">I love how each piece is built from hundreds or thousands of deliberate little stitches, and how every new design is a chance to deepen my understanding of the craft and what I can create.</p>
+          <p style="margin:0 0 1rem;">That love for the process is what led me here: designing my own crochet patterns. The encouragement I received from sharing my crochet online gave me the confidence to start turning my ideas into patterns, and I'm so excited to share the pieces I've been dreaming up with you! Thank you for being here &lt;3</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section id="shop" style="background:#C9D3D8;">
+      <div style="max-width:1140px; margin:0 auto; padding:72px 32px;">
+        <div style="text-align:center; margin-bottom:44px;">
+          <p style="font-family:'EB Garamond',serif; font-style:italic; font-size:17px; color:#8E7355; margin:0 0 8px;">Fancy making your own?</p>
+          <h2 style="font-family:'EB Garamond',serif; font-size:38px; font-weight:600; margin:0;">Shop my patterns</h2>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:760px; margin:0 auto;">
+          <a href="#" target="_blank" rel="noopener" class="etsy-link" style="text-decoration:none; background:#38495A; border-radius:10px; padding:34px 30px; text-align:center; border:1px solid #8E7355; min-width:220px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8E7355" stroke-width="1.4" style="margin-bottom:12px;"><path d="M7 8c0-3 1.8-5 5-5s5 2 5 5"></path><path d="M5 8h14l-1.2 12.2a1.3 1.3 0 0 1-1.3 1.3H7.5a1.3 1.3 0 0 1-1.3-1.3z"></path><path d="M9.5 12.5c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5"></path></svg>
+            <div style="font-family:'EB Garamond',serif; font-size:26px; font-style:italic; color:#F8F7F1; margin-bottom:10px;">Etsy</div>
+            <div style="width:28px; height:1px; background:#8E7355; margin:0 auto 10px;"></div>
+            <div style="font-size:13px; letter-spacing:0.3px; color:#C9D3D8;">Shop patterns</div>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="kofi-link" style="text-decoration:none; background:#F8F7F1; border-radius:10px; padding:34px 30px; text-align:center; border:1px solid #8E7355; min-width:220px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8E7355" stroke-width="1.4" style="margin-bottom:12px;"><path d="M4 9c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v4.5A5.5 5.5 0 0 1 11.5 19h-1A5.5 5.5 0 0 1 5 13.5z"></path><path d="M16 10h1.8a2.2 2.2 0 0 1 0 4.4H16"></path><path d="M8 5.5c.5-.7 1-.9 1-1.5"></path><path d="M11 5.2c.5-.7 1-.9 1-1.5"></path></svg>
+            <div style="font-family:'EB Garamond',serif; font-size:26px; font-style:italic; color:#38495A; margin-bottom:10px;">Ko-fi</div>
+            <div style="width:28px; height:1px; background:#8E7355; margin:0 auto 10px;"></div>
+            <div style="font-size:13px; letter-spacing:0.3px; color:#38495A;">Shop patterns</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="background:#fff; border-top:1px solid #C9D3D8; border-bottom:1px solid #C9D3D8;">
+      <div style="max-width:760px; margin:0 auto; padding:80px 32px;">
+        <div style="text-align:center; margin-bottom:44px;">
+          <h2 style="font-family:'EB Garamond',serif; font-size:34px; font-weight:600; margin:0;">FAQ</h2>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <details style="border:1px solid #C9D3D8; border-radius:12px; padding:18px 22px;">
+            <summary style="font-size:16px; font-weight:600;">What skill level are your patterns?</summary>
+            <p style="font-size:15px; line-height:1.7; color:#38495A; margin:14px 0 0;">Most patterns will be written for ambitious beginners/intermediate crocheters. Skill level will be noted on every pattern page.</p>
+          </details>
+          <details style="border:1px solid #C9D3D8; border-radius:12px; padding:18px 22px;">
+            <summary style="font-size:16px; font-weight:600;">How do I receive my pattern?</summary>
+            <p style="font-size:15px; line-height:1.7; color:#38495A; margin:14px 0 0;">Patterns are sold as instant PDF digital downloads through Etsy and Ko-fi.</p>
+          </details>
+          <details style="border:1px solid #C9D3D8; border-radius:12px; padding:18px 22px;">
+            <summary style="font-size:16px; font-weight:600;">Can I sell items made from your patterns?</summary>
+            <p style="font-size:15px; line-height:1.7; color:#38495A; margin:14px 0 0;">Feel free to sell items made from my patterns, all I ask is that you make sure to give credit and directions to my page/social media. The patterns themselves can not be resold or reproduced in part or in whole.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="max-width:1140px; margin:0 auto; padding:80px 32px; text-align:center;">
+      <p style="font-family:'EB Garamond',serif; font-style:italic; font-size:17px; color:#8E7355; margin:0 0 8px;">Say hello</p>
+      <h2 style="font-family:'EB Garamond',serif; font-size:34px; font-weight:600; margin:0 0 18px;">Get in touch</h2>
+      <p style="font-size:16px; line-height:1.7; color:#38495A; max-width:480px; margin:0 auto 28px;">Got any questions? I'd love to hear from you.</p>
+      <a href="mailto:hannahnicoledesigns.uk@gmail.com" class="btn-contact" style="text-decoration:none; background:#E8B8AC; color:#38495A; padding:15px 30px; border-radius:8px; font-size:15px; font-weight:700; transition:background 0.25s ease;">hannahnicoledesigns.uk@gmail.com</a>
+    </section>
+
+  </main>
   </div>
-</section>
 
-<section class="gallery-section" id="gallery">
-  <div class="gallery-header">
-    <span class="tag">Recent designs</span>
-    <h2>A few favourites</h2>
+  <!-- PATTERN DETAIL VIEW -->
+  <div id="detail-view">
+  <main style="max-width:1000px; margin:0 auto; padding:56px 32px 96px;">
+    <a href="#" id="back-link" class="back-link" style="text-decoration:none; font-size:14px; font-weight:600; color:#8E7355; transition:color 0.25s ease;">← Back to patterns</a>
+    <div style="margin-top:28px; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;" id="detail-grid">
+      <div style="position:relative;">
+        <div id="carousel" style="aspect-ratio:1/1; border-radius:20px; overflow:hidden; border:1px solid #C9D3D8; display:flex; overflow-x:auto; scroll-snap-type:x mandatory;">
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="photo-lamp-v2.jpg" alt="Inigo Flowers Lampshade, lit" style="width:100%; height:100%; object-fit:cover; object-position:center 70%; transform:scale(1.15); display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="photo-lamp-2.jpeg" alt="Inigo Flowers Lampshade on lamp" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden; background:#F1EEE4;">
+            <img src="photo-lamp-3.jpeg" alt="Filet crochet piece in progress with yarn" style="width:100%; height:100%; object-fit:contain; transform:rotate(-90deg); display:block;">
+          </div>
+        </div>
+        <button id="carousel-prev" aria-label="Previous photo" class="btn-primary" style="position:absolute; left:14px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; border:1px solid #8E7355; background:#8E7355; color:#F8F7F1; font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 0 14px 2px rgba(142,115,85,0.55); transition:background 0.25s ease;">‹</button>
+        <button id="carousel-next" aria-label="Next photo" class="btn-primary" style="position:absolute; right:14px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; border:1px solid #8E7355; background:#8E7355; color:#F8F7F1; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 0 14px 2px rgba(142,115,85,0.55); transition:background 0.25s ease;">›</button>
+        <div id="carousel-dots" style="display:flex; gap:8px; justify-content:center; margin-top:14px;"></div>
+      </div>
+      <div>
+        <span style="display:inline-block; background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; margin-bottom:16px;">Intermediate / ambitious beginner</span>
+        <h1 style="font-family:'EB Garamond',serif; font-size:40px; font-weight:600; margin:0 0 12px;">Inigo Flowers Lampshade</h1>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">A filet-crochet lampshade cover in a delicate floral motif, worked in 4-ply yarn. Designed for a close friend of mine, Inigo, &nbsp;hence the name, and now released out into the world. The open and filled squares catch the light beautifully around the flowers.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">Well suited to intermediate crocheters, and a perfect project for your first time trying filet crochet thanks to the full guide included.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 32px; font-family: 'EB Garamond',serif;">Full materials list, yardage, hook size and lampshade sizing are included in the pattern description on Etsy and Ko-fi.</p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="#" target="_blank" rel="noopener" class="etsy-link btn-primary" style="text-decoration:none; background:#8E7355; color:#F8F7F1; padding:15px 30px; border-radius:8px; font-size:15px; font-weight:700; transition:background 0.25s ease;">Shop on Etsy</a>
+          <a href="#" target="_blank" rel="noopener" class="kofi-link btn-secondary" style="text-decoration:none; background:#38495A; color:#F8F7F1; padding:15px 30px; border-radius:8px; font-size:15px; font-weight:700; transition:background 0.25s ease;">Shop on Ko-fi</a>
+        </div>
+      </div>
+    </div>
+  </main>
   </div>
-  <div class="gallery-grid" data-content="gallery-grid">
-    <!-- gallery items are added automatically from content.js -->
-  </div>
-</section>
 
-<section class="etsy-cta" id="shop">
-  <span class="tag">Ready to make one yourself?</span>
-  <h2>Find the full collection on Etsy</h2>
-  <p>New patterns are added regularly — hop over to the shop to see what's currently available. If you'd like to support the designs another way, you can also buy me a coffee on Ko-fi.</p>
-  <a href="#" class="btn" target="_blank" rel="noopener" data-content="etsy-link">Visit the Etsy shop →</a>
-  <a href="#" class="btn kofi" target="_blank" rel="noopener" data-content="kofi-link">Support on Ko-fi →</a>
-  <div class="social-row" data-content="shop-socials"></div>
-</section>
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid #C9D3D8; padding:40px 32px;">
+    <div style="max-width:1140px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <span style="font-family:'EB Garamond',serif; font-size:17px; font-weight:600;">Hannah Nicole Designs</span>
+      <div style="display:flex; gap:20px;">
+        <a href="https://www.instagram.com/hannahnicoledesigns.uk" target="_blank" rel="noopener" class="footer-link" style="text-decoration:none; font-size:13px; font-weight:600; color:#8E7355;">Instagram</a>
+        <a href="https://www.tiktok.com/@loops.by.hannah?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="footer-link" style="text-decoration:none; font-size:13px; font-weight:600; color:#8E7355;">TikTok</a>
+      </div>
+      <span style="font-size:13px; color:#38495A;">© 2026 Hannah Nicole Designs</span>
+    </div>
+  </footer>
 
-<footer>
-  <p>&copy; <span id="year"></span> <span data-content="brandName">Hannah Nicole Designs</span> · Handmade with care</p>
-  <div class="social-row" data-content="footer-socials"></div>
-</footer>
-
-<script>
-(function(){
-  const c = window.SITE_CONTENT;
-
-  function setImageOrPlaceholder(container, src, altText, placeholderText){
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = altText;
-    img.loading = 'lazy';
-    img.onerror = function(){
-      img.remove();
-      const label = document.createElement('span');
-      label.className = 'placeholder-label';
-      label.textContent = placeholderText;
-      container.appendChild(label);
-    };
-    container.querySelectorAll('.placeholder-label').forEach(el => el.remove());
-    container.appendChild(img);
-  }
-
-  function renderSocialRow(container, socials){
-    if (!container || !socials) return;
-    container.innerHTML = '';
-    Object.keys(socials).forEach(key => {
-      const s = socials[key];
-      if (!s || !s.url) return;
-      const a = document.createElement('a');
-      a.href = s.url;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.textContent = s.label + ' ' + s.handle;
-      container.appendChild(a);
-    });
-  }
-
-  // Text fields, matched by their data-content attribute
-  const textFields = {
-    'hero-eyebrow': c.hero.eyebrow,
-    'hero-heading-start': c.hero.headingStart,
-    'hero-heading-emphasis': c.hero.headingEmphasis,
-    'hero-intro': c.hero.intro,
-    'about-tag': c.about.tag,
-    'about-heading': c.about.heading,
-  };
-  Object.keys(textFields).forEach(key => {
-    document.querySelectorAll('[data-content="' + key + '"]').forEach(el => {
-      el.textContent = textFields[key];
-    });
-  });
-
-  // About paragraphs — one <p> per line in content.js
-  const aboutParaContainer = document.querySelector('[data-content="about-paragraphs"]');
-  if (aboutParaContainer && Array.isArray(c.about.paragraphs)) {
-    aboutParaContainer.innerHTML = '';
-    c.about.paragraphs.forEach(text => {
-      const p = document.createElement('p');
-      p.textContent = text;
-      aboutParaContainer.appendChild(p);
-    });
-  }
-
-  // About signature
-  document.querySelectorAll('[data-content="about-signature"]').forEach(el => {
-    el.textContent = c.about.signature || '';
-  });
-
-  // Brand name (appears in nav + footer)
-  document.querySelectorAll('[data-content="brandName"]').forEach(el => {
-    el.textContent = c.brandName;
-  });
-
-  // Etsy / Ko-fi links
-  document.querySelectorAll('[data-content="etsy-link"]').forEach(el => {
-    el.href = c.etsyUrl;
-  });
-  document.querySelectorAll('[data-content="kofi-link"]').forEach(el => {
-    el.href = (c.socials && c.socials.kofi && c.socials.kofi.url) || '#';
-  });
-
-  // Social link rows
-  renderSocialRow(document.querySelector('[data-content="about-socials"]'), c.socials ? { tiktok: c.socials.tiktok, instagram: c.socials.instagram } : null);
-  renderSocialRow(document.querySelector('[data-content="shop-socials"]'), c.socials ? { etsy: c.socials.etsy, kofi: c.socials.kofi } : null);
-  renderSocialRow(document.querySelector('[data-content="footer-socials"]'), c.socials);
-
-  // About photo
-  setImageOrPlaceholder(
-    document.querySelector('[data-content="about-photo-container"]'),
-    c.about.photo,
-    'Photo of ' + c.brandName,
-    '📷 add a photo in content.js'
-  );
-
-  // Gallery — built fresh from the list in content.js.
-  // Each photo links through to its own pattern page (pattern.html?slug=...).
-  const grid = document.querySelector('[data-content="gallery-grid"]');
-  grid.innerHTML = '';
-  c.gallery.forEach(item => {
-    const link = document.createElement('a');
-    link.className = 'polaroid-link';
-    link.href = item.slug ? ('pattern.html?slug=' + encodeURIComponent(item.slug)) : '#shop';
-    link.setAttribute('aria-label', 'View the ' + item.caption + ' pattern');
-
-    const figure = document.createElement('figure');
-    figure.className = 'polaroid';
-
-    const photoBox = document.createElement('div');
-    photoBox.className = 'photo-box';
-    setImageOrPlaceholder(photoBox, item.image, item.caption, 'Add photo: ' + item.image);
-
-    const caption = document.createElement('figcaption');
-    caption.textContent = item.caption;
-
-    figure.appendChild(photoBox);
-    figure.appendChild(caption);
-    link.appendChild(figure);
-    grid.appendChild(link);
-  });
-
-  // Colors — set as CSS variables so they apply everywhere
-  const root = document.documentElement.style;
-  root.setProperty('--color1', c.colors.color1);
-  root.setProperty('--color2', c.colors.color2);
-  root.setProperty('--color3', c.colors.color3);
-  root.setProperty('--color4', c.colors.color4);
-  root.setProperty('--color5', c.colors.color5);
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-})();
-</script>
-
+</div>
+<script src="content.js"></script>
 </body>
 </html>
