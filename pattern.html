@@ -158,10 +158,21 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(43,43,40,0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .carousel-nav.visible{
+    opacity: 1;
+    pointer-events: auto;
   }
   .carousel-nav:hover{ background: var(--color3); color: var(--color5); }
   .carousel-nav.prev{ left: 0.8rem; }
   .carousel-nav.next{ right: 0.8rem; }
+
+  @media (prefers-reduced-motion: reduce){
+    .carousel-nav{ transition: none; }
+  }
   .carousel-dots{
     display: flex;
     justify-content: center;
@@ -216,7 +227,6 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .btn:hover{ transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
-  .btn.kofi{ background: var(--color1); }
 
   .social-row{
     display: flex;
@@ -274,7 +284,7 @@
 
 <nav>
   <a class="brand" href="index.html" data-content="brandName">Hannah Nicole Designs</a>
-  <a class="back" href="index.html#gallery">← Back to gallery</a>
+  <a class="back" href="index.html#gallery">← Back</a>
 </nav>
 
 <main id="pattern-root">
@@ -286,7 +296,19 @@
 </footer>
 
 <script>
-(function(){
+(async function(){
+  // Test whether an image URL actually loads (vs. a filename in content.js
+  // that hasn't been added to /images yet). Used to keep the carousel's
+  // dots/arrows in sync with photos that truly exist.
+  function imageExists(src){
+    return new Promise(resolve => {
+      const testImg = new Image();
+      testImg.onload = function(){ resolve(true); };
+      testImg.onerror = function(){ resolve(false); };
+      testImg.src = src;
+    });
+  }
+
   const c = window.SITE_CONTENT;
   const root = document.getElementById('pattern-root');
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -334,7 +356,15 @@
   const frame = document.createElement('div');
   frame.className = 'carousel-frame';
 
-  const images = (pattern.images && pattern.images.length) ? pattern.images : ['images/placeholder.jpg'];
+  const candidates = (pattern.images && pattern.images.length) ? pattern.images : ['images/placeholder.jpg'];
+  const existenceChecks = await Promise.all(
+    candidates.map(src => imageExists(src).then(exists => exists ? src : null))
+  );
+  const images = existenceChecks.filter(Boolean);
+  // If none of the listed photos actually exist yet, fall back to a single
+  // placeholder slot (renderFrame's onerror handler will show the
+  // "add photo in content.js" label for it).
+  if (images.length === 0) images.push('images/placeholder.jpg');
   let current = 0;
 
   function renderFrame(){
@@ -378,8 +408,32 @@
     dotsWrap.appendChild(dot);
     return dot;
   });
-  if (images.length > 1) carousel.appendChild(dotsWrap);
-  else { prevBtn.style.display = 'none'; nextBtn.style.display = 'none'; }
+
+  if (images.length > 1) {
+    // Multiple photos: show the dots, and reveal the prev/next arrow
+    // depending on which half of the picture the cursor is hovering over.
+    carousel.appendChild(dotsWrap);
+
+    frame.addEventListener('mousemove', function(e){
+      const rect = frame.getBoundingClientRect();
+      const isLeftHalf = (e.clientX - rect.left) < rect.width / 2;
+      prevBtn.classList.toggle('visible', isLeftHalf);
+      nextBtn.classList.toggle('visible', !isLeftHalf);
+    });
+    frame.addEventListener('mouseleave', function(){
+      prevBtn.classList.remove('visible');
+      nextBtn.classList.remove('visible');
+    });
+    // Keyboard/focus users still get access to the buttons.
+    prevBtn.addEventListener('focus', function(){ prevBtn.classList.add('visible'); });
+    prevBtn.addEventListener('blur', function(){ prevBtn.classList.remove('visible'); });
+    nextBtn.addEventListener('focus', function(){ nextBtn.classList.add('visible'); });
+    nextBtn.addEventListener('blur', function(){ nextBtn.classList.remove('visible'); });
+  } else {
+    // Only one photo (or none): no dots, no arrows.
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+  }
 
   renderFrame();
 
@@ -414,15 +468,6 @@
     etsyBtn.rel = 'noopener';
     etsyBtn.textContent = 'Get the pattern on Etsy →';
     links.appendChild(etsyBtn);
-  }
-  if (pattern.kofiUrl) {
-    const kofiBtn = document.createElement('a');
-    kofiBtn.className = 'btn kofi';
-    kofiBtn.href = pattern.kofiUrl;
-    kofiBtn.target = '_blank';
-    kofiBtn.rel = 'noopener';
-    kofiBtn.textContent = 'Get it on Ko-fi →';
-    links.appendChild(kofiBtn);
   }
   details.appendChild(links);
 
