@@ -227,6 +227,7 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .btn:hover{ transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+  .btn.kofi{ background: var(--color1); }
 
   .social-row{
     display: flex;
@@ -468,6 +469,15 @@
     etsyBtn.rel = 'noopener';
     etsyBtn.textContent = 'Get the pattern on Etsy →';
     links.appendChild(etsyBtn);
+  }
+  if (pattern.kofiUrl) {
+    const kofiBtn = document.createElement('a');
+    kofiBtn.className = 'btn kofi';
+    kofiBtn.href = pattern.kofiUrl;
+    kofiBtn.target = '_blank';
+    kofiBtn.rel = 'noopener';
+    kofiBtn.textContent = 'Get it on Ko-fi →';
+    links.appendChild(kofiBtn);
   }
   details.appendChild(links);
 
