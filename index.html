@@ -22,17 +22,29 @@
     .hero-section { grid-template-columns: 0.7fr 1.6fr 0.7fr; }
     .hero-cluster { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 600px) {
-    .hero-section { grid-template-columns: 0.55fr 1.9fr 0.55fr; }
-    .hero-cluster { grid-template-columns: 1fr; }
+  @media (max-width: 640px) {
+    .hero-section { grid-template-columns: 1fr; }
+    .hero-cluster { grid-template-columns: repeat(3, 1fr); }
   }
   .hero-cell { overflow:hidden; }
+  .nav-links-desktop { display:flex; }
+  .nav-hamburger { display:none; }
+  @media (max-width: 860px) {
+    .nav-links-desktop { display:none; }
+    .nav-hamburger { display:flex; }
+  }
+  .nav-social-label { display:inline; }
+  @media (max-width: 480px) {
+    .nav-social-label { display:none; }
+  }
 
   /* View toggling (home <-> pattern detail) */
   #detail-view { display: none; }
   body.view-detail #home-view { display: none; }
   body.view-detail #detail-view { display: block; }
   body.view-detail #main-nav { display: none; }
+  body.view-detail #nav-hamburger-btn { display: none; }
+  body.view-detail #mobile-menu { display: none !important; }
 
   /* Hover states (replace the design tool's style-hover attribute) */
   .nav-link:hover, .social-link:hover, .footer-link:hover { text-decoration: underline; }
@@ -55,17 +67,29 @@
   <header style="position:sticky; top:0; z-index:50; background:#38495A; backdrop-filter:blur(6px); border-bottom:1px solid #38495A;">
     <div style="max-width:1140px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
       <a href="#" id="nav-home" style="font-family:'EB Garamond',serif; font-size:24px; font-weight:600; text-decoration:none; color:#F8F7F1; letter-spacing:0.3px;">Hannah Nicole Designs</a>
-      <nav id="main-nav" style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+      <nav id="main-nav" class="nav-links-desktop" style="align-items:center; gap:28px; flex-wrap:wrap;">
         <a href="#gallery" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">Patterns</a>
         <a href="#shop" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">Shop</a>
         <a href="#about" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">About</a>
         <a href="#faq" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">FAQ</a>
         <a href="#contact" class="nav-link" style="text-decoration:none; font-size:15px; font-weight:500; color:#F8F7F1;">Contact</a>
       </nav>
-      <div style="display:flex; gap:14px;">
-        <a href="https://www.instagram.com/hannahnicoledesigns.uk" target="_blank" rel="noopener" class="social-link" style="text-decoration:none; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; letter-spacing:0.4px; color:#E8B8AC;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B8AC" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="#E8B8AC" stroke="none"></circle></svg>Instagram</a>
-        <a href="https://www.tiktok.com/@loops.by.hannah?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-link" style="text-decoration:none; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; letter-spacing:0.4px; color:#E8B8AC;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B8AC" stroke-width="2"><path d="M14 3v10.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c0 2.5 2 4.5 4.5 4.5"></path></svg>TikTok</a>
+      <div style="display:flex; align-items:center; gap:18px;">
+        <div style="display:flex; gap:14px;">
+          <a href="https://www.instagram.com/hannahnicoledesigns.uk" target="_blank" rel="noopener" class="social-link" style="text-decoration:none; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; letter-spacing:0.4px; color:#E8B8AC;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B8AC" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="#E8B8AC" stroke="none"></circle></svg><span class="nav-social-label">Instagram</span></a>
+          <a href="https://www.tiktok.com/@loops.by.hannah?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-link" style="text-decoration:none; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; letter-spacing:0.4px; color:#E8B8AC;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8B8AC" stroke-width="2"><path d="M14 3v10.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c0 2.5 2 4.5 4.5 4.5"></path></svg><span class="nav-social-label">TikTok</span></a>
+        </div>
+        <button id="nav-hamburger-btn" class="nav-hamburger" aria-label="Toggle menu" style="align-items:center; justify-content:center; width:44px; height:44px; background:none; border:none; cursor:pointer; padding:0; flex:none;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F8F7F1" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
       </div>
+    </div>
+    <div id="mobile-menu" style="display:none; position:absolute; top:100%; left:0; width:100%; background:#38495A; box-shadow:0 12px 24px rgba(0,0,0,0.2); flex-direction:column; padding:8px 32px 20px;">
+      <a href="#gallery" class="mobile-menu-link" style="text-decoration:none; color:#F8F7F1; font-size:16px; font-weight:500; padding:14px 0; border-bottom:1px solid rgba(248,247,241,0.15);">Patterns</a>
+      <a href="#shop" class="mobile-menu-link" style="text-decoration:none; color:#F8F7F1; font-size:16px; font-weight:500; padding:14px 0; border-bottom:1px solid rgba(248,247,241,0.15);">Shop</a>
+      <a href="#about" class="mobile-menu-link" style="text-decoration:none; color:#F8F7F1; font-size:16px; font-weight:500; padding:14px 0; border-bottom:1px solid rgba(248,247,241,0.15);">About</a>
+      <a href="#faq" class="mobile-menu-link" style="text-decoration:none; color:#F8F7F1; font-size:16px; font-weight:500; padding:14px 0; border-bottom:1px solid rgba(248,247,241,0.15);">FAQ</a>
+      <a href="#contact" class="mobile-menu-link" style="text-decoration:none; color:#F8F7F1; font-size:16px; font-weight:500; padding:14px 0;">Contact</a>
     </div>
   </header>
 
@@ -83,9 +107,9 @@
         <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/hero-2.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
         <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/hero-8.jpg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
       </div>
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 32px; position: relative">
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: clamp(28px,8vw,40px) clamp(20px,6vw,32px); position: relative">
         <p style="font-family:'EB Garamond',serif; font-style:italic; font-size:15px; color:#8E7355; margin:0 0 10px; letter-spacing:0.3px;">Born from the joy of creating</p>
-        <h1 style="font-family: 'EB Garamond',serif; font-size: 34px; line-height: 1.2; font-weight: 600; margin: 0 0 16px; max-width:560px;">Crochet patterns for your <span style="color: #8E7355;">home and wardrobe</span></h1>
+        <h1 style="font-family: 'EB Garamond',serif; font-size: clamp(26px,5vw,34px); line-height: 1.2; font-weight: 600; margin: 0 0 16px; max-width:560px;">Crochet patterns for your <span style="color: #8E7355;">home and wardrobe</span></h1>
         <p style="font-family:'EB Garamond',serif; font-size: 15px; line-height: 1.6; color: #38495A; margin: 0 0 24px; max-width:440px;">Hi, I'm Hannah! I design crochet patterns for the pieces I dream up, and hope you enjoy bringing them to life in a way that feels truly yours.</p>
         <div style="display:flex; gap:28px; flex-wrap:wrap; justify-content:center;">
           <a href="#gallery" class="fade-link" style="text-decoration:none; color:#8E7355; font-size:14px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; border-bottom:2px solid #8E7355; padding-bottom:4px; transition:opacity 0.25s ease;">Browse Patterns</a>
@@ -95,7 +119,7 @@
       <div class="hero-cluster">
         <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/hero-4.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block;"></div>
         <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/hero-7.jpeg" alt="Crochet detail" style="width: 100%; height: 100%; object-fit: cover; object-position: center 25%; transform: scale(2.4); display: block; position: relative; top: -40px"></div>
-        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/photo-lamp-3.jpeg" alt="Filet crochet piece" style="width: 122px; height: 143px; object-fit: cover; transform: rotate(90deg) scale(3.6) translateX(-8%); display: block; position: relative; top: 6px; left: 35px"></div>
+        <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/photo-lamp-3.jpeg" alt="Filet crochet piece" style="width:100%; height:100%; object-fit:cover; transform:rotate(90deg) scale(3.2); display:block;"></div>
         <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/hero-10.jpg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block;"></div>
         <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/hero-6.jpeg" alt="Crochet detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
         <div class="hero-cell" style="width:100%; aspect-ratio:1/1;"><img src="images/IMG_0861-a0b01462.JPG" alt="Hannah smiling" style="width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;"></div>
@@ -110,9 +134,9 @@
       </div>
       <div style="max-width:760px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid #C9D3D8; border-radius:20px; overflow:hidden; background:#fff;">
         <div style="aspect-ratio:1/1; overflow:hidden;">
-          <img src="images/photo-lamp-v2.jpg" alt="Inigo Flowers Lampshade, lit" style="width: 296px; height: 358px; object-fit: cover; object-position: center 25%; transform: scale(1.6); display: block; position: relative; top: -80px; left: 40px">
+          <img src="images/photo-lamp-v2.jpg" alt="Inigo Flowers Lampshade, lit" style="width:100%; height:100%; object-fit:cover; object-position:center 30%; transform:scale(1.3); display:block;">
         </div>
-        <div style="padding:36px; display:flex; flex-direction:column; justify-content:center;">
+        <div style="padding:clamp(24px,6vw,36px); display:flex; flex-direction:column; justify-content:center;">
           <span style="align-self:flex-start; background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; margin-bottom:14px;">Intermediate</span>
           <h3 style="font-family:'EB Garamond',serif; font-size:26px; font-weight:600; margin:0 0 10px;">Inigo Flowers Lampshade</h3>
           <p style="font-size:14.5px; line-height:1.6; color:#38495A; margin:0 0 18px;">A filet-crochet lampshade cover worked in delicate floral motifs. Complete with a full guide to filet crochet for crocheters trying it for the first time.<br></p>
@@ -125,7 +149,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" style="max-width:1140px; margin:0 auto; padding:80px 32px; display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center;">
+    <section id="about" style="max-width:1140px; margin:0 auto; padding:clamp(48px,10vw,80px) clamp(20px,6vw,32px); display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center;">
       <div style="aspect-ratio:4/5; border-radius:16px; overflow:hidden; border:1px solid #8E7355; box-shadow:0 10px 24px rgba(56,73,90,0.1);">
         <img src="images/about-photo.jpg" alt="Hannah" style="width:100%; height:100%; object-fit:cover; object-position:center 25%; display:block; filter:sepia(0.14) saturate(1.02) contrast(0.98) brightness(1.01);">
       </div>
