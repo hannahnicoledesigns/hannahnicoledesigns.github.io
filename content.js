@@ -11,6 +11,7 @@
 // it's almost always a missing quote mark or comma
 // =====================================================================
 
+
 // Site configuration and interactive behaviour for Hannah Nicole Designs
 const SITE = {
   etsyUrl: 'https://hannahnicoledesigns8.etsy.com',
@@ -18,7 +19,6 @@ const SITE = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Wire up shop links
   document.querySelectorAll('.etsy-link').forEach((el) => { el.href = SITE.etsyUrl; });
   document.querySelectorAll('.kofi-link').forEach((el) => { el.href = SITE.kofiUrl; });
 
@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('back-link').addEventListener('click', (e) => { e.preventDefault(); goHome(); });
   document.getElementById('view-pattern-link').addEventListener('click', (e) => { e.preventDefault(); goDetail(); });
 
-  // Center the Shop section in the viewport when clicked from the hero link
   document.getElementById('shop-centered-link').addEventListener('click', (e) => {
     e.preventDefault();
     const el = document.getElementById('shop');
@@ -45,6 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const rect = el.getBoundingClientRect();
     const targetY = window.scrollY + rect.top + rect.height / 2 - window.innerHeight / 2;
     window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+  });
+
+  // Mobile hamburger menu
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburgerBtn.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+  mobileMenu.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => { mobileMenu.classList.remove('open'); });
   });
 
   // Carousel (pattern detail view)
@@ -59,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     dotsWrap.innerHTML = '';
     for (let i = 0; i < slideCount; i++) {
       const dot = document.createElement('button');
-      dot.style.cssText = 'width:8px;height:8px;padding:0;border-radius:50%;border:none;cursor:pointer;background:' + (i === slide ? '#8E7355' : '#C9D3D8') + ';';
+      dot.className = 'carousel-dot';
+      dot.style.background = i === slide ? '#8E7355' : '#C9D3D8';
       dot.addEventListener('click', () => goToSlide(i));
       dotsWrap.appendChild(dot);
     }
