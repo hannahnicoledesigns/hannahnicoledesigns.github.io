@@ -15,12 +15,17 @@
 // Site configuration and interactive behaviour for Hannah Nicole Designs
 const SITE = {
   etsyUrl: 'https://hannahnicoledesigns8.etsy.com',
-  kofiUrl: 'https://ko-fi.com/hannahnicoledesigns',
+  kofiUrl: 'https://ko-fi.com/hannahnicoledesigns/shop',
+  // Direct links to the Inigo Flowers Lampshade listing, used only on that pattern's detail page
+  etsyProductUrl: 'https://hannahnicoledesigns8.etsy.com/listing/4551719881',
+  kofiProductUrl: 'https://ko-fi.com/s/ef71679a74',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.etsy-link').forEach((el) => { el.href = SITE.etsyUrl; });
   document.querySelectorAll('.kofi-link').forEach((el) => { el.href = SITE.kofiUrl; });
+  document.querySelectorAll('.etsy-link-product').forEach((el) => { el.href = SITE.etsyProductUrl; });
+  document.querySelectorAll('.kofi-link-product').forEach((el) => { el.href = SITE.kofiProductUrl; });
 
   const body = document.body;
   const headerBar = document.getElementById('header-bar');
