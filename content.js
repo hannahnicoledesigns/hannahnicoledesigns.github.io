@@ -8,7 +8,7 @@
 //      then type its exact filename below (e.g. "images/blanket.jpg")
 //
 // If something looks broken after you save, undo your last change —
-// it's almost always a missing quote mark or comma
+// it's almost always a missing quote mark or comma!
 // =====================================================================
 
 
