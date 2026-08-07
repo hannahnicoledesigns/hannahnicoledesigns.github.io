@@ -23,6 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.kofi-link').forEach((el) => { el.href = SITE.kofiUrl; });
 
   const body = document.body;
+  const headerBar = document.getElementById('header-bar');
+
+  function updateHeaderHeight() {
+    if (!headerBar) return;
+    document.documentElement.style.setProperty('--header-height', `${headerBar.offsetHeight}px`);
+  }
+
+  updateHeaderHeight();
+  window.addEventListener('resize', updateHeaderHeight);
+  if (typeof ResizeObserver !== 'undefined' && headerBar) {
+    const headerResizeObserver = new ResizeObserver(updateHeaderHeight);
+    headerResizeObserver.observe(headerBar);
+  }
 
   function goHome() {
     body.classList.remove('view-detail');

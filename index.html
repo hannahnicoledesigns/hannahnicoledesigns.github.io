@@ -6,6 +6,8 @@
 <title>Hannah Nicole Designs — Crochet Patterns</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Mulish:wght@400;500;600;700&display=swap');
+  :root { --header-height: 84px; }
+  html { scroll-padding-top: var(--header-height); }
   body { margin: 0; background: #F8F7F1; font-family:'Mulish',sans-serif; color:#38495A; }
   ::selection { background: #E8B8AC; color: #38495A; }
   a { color: #38495A; }
@@ -33,7 +35,7 @@
     .about-grid, .detail-grid { gap: 32px; }
   }
 
-  #gallery, #about, #shop, #faq { scroll-margin-top: 64px; }
+  #gallery, #about, #shop, #faq { scroll-margin-top: var(--header-height); }
 
   .nav-links-desktop { display:flex; }
   .nav-hamburger { display:none; }
@@ -99,7 +101,7 @@
 
   <!-- NAV -->
   <header style="position:sticky; top:0; z-index:50; background:#38495A; border-bottom:1px solid #38495A;">
-    <div style="max-width:1140px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+    <div id="header-bar" style="max-width:1140px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
       <a href="#" id="nav-home" class="brand-link">Hannah Nicole Designs</a>
       <nav class="nav-links-desktop" style="align-items:center; gap:28px; flex-wrap:wrap;">
         <a href="#gallery" class="nav-link">Patterns</a>
