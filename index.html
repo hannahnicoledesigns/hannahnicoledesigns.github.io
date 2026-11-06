@@ -92,7 +92,9 @@
   .carousel-dot { width:8px; height:8px; padding:10px; border-radius:50%; border:none; cursor:pointer; background-clip:content-box; }
 
   body.view-detail #home-view { display:none; }
-  body:not(.view-detail) #detail-view { display:none; }
+  .detail-view { display:none; }
+  .detail-view.active { display:block; }
+  .gallery-list { display:flex; flex-direction:column; gap:32px; }
 </style>
 </head>
 <body>
@@ -165,7 +167,22 @@
     <section id="gallery" style="max-width:1140px; margin:0 auto; padding:64px 32px 80px;">
       <div style="text-align:center; margin-bottom:48px;">
         <p style="font-family:'EB Garamond',serif; font-style:italic; font-size:17px; color:#8E7355; margin:0 0 8px;">The patterns</p>
-        <h2 style="font-family:'EB Garamond',serif; font-size:38px; font-weight:600; margin:0;">Latest release</h2>
+        <h2 style="font-family:'EB Garamond',serif; font-size:38px; font-weight:600; margin:0;">Latest releases</h2>
+      </div>
+      <div class="gallery-list">
+      <div class="gallery-card" style="max-width:760px; margin:0 auto; display:grid; gap:0; border:1px solid #C9D3D8; border-radius:20px; overflow:hidden; background:#fff;">
+        <div style="aspect-ratio:1/1; overflow:hidden;">
+          <img src="https://i.etsystatic.com/67223073/r/il/25dd72/8651748595/il_794xN.8651748595_f44h.jpg" alt="Lycia Belt worn with jeans" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div style="padding:clamp(24px,6vw,36px); display:flex; flex-direction:column; justify-content:center;">
+          <span style="align-self:flex-start; background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; margin-bottom:14px;">Beginner</span>
+          <h3 style="font-family:'EB Garamond',serif; font-size:26px; font-weight:600; margin:0 0 10px;">Lycia Belt</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:#38495A; margin:0 0 18px;">A quick, made-to-measure flower belt worked in rounds around a foundation chain, with chain ties that finish in a bow at the back. A great way to use up scrap yarn.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <span style="font-family:'EB Garamond',serif; font-size:22px; font-weight:600;">£3.12</span>
+            <a href="#" class="view-pattern-btn view-pattern-link" data-pattern="lycia">View Pattern</a>
+          </div>
+        </div>
       </div>
       <div class="gallery-card" style="max-width:760px; margin:0 auto; display:grid; gap:0; border:1px solid #C9D3D8; border-radius:20px; overflow:hidden; background:#fff;">
         <div style="aspect-ratio:1/1; overflow:hidden;">
@@ -177,9 +194,10 @@
           <p style="font-size:14.5px; line-height:1.6; color:#38495A; margin:0 0 18px;">A filet-crochet lampshade cover worked in delicate floral motifs. Complete with a full guide to filet crochet for crocheters trying it for the first time.</p>
           <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
             <span style="font-family:'EB Garamond',serif; font-size:22px; font-weight:600;">£7.99</span>
-            <a href="#" id="view-pattern-link" class="view-pattern-btn">View Pattern</a>
+            <a href="#" class="view-pattern-btn view-pattern-link" data-pattern="inigo">View Pattern</a>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -256,12 +274,12 @@
 
   </main>
 
-  <!-- PATTERN DETAIL VIEW -->
-  <main id="detail-view" style="max-width:1000px; margin:0 auto; padding:56px 32px 96px;">
-    <a href="#" id="back-link" class="back-link">← Back to patterns</a>
+  <!-- PATTERN DETAIL VIEW: INIGO FLOWERS LAMPSHADE -->
+  <main id="detail-inigo" class="detail-view" style="max-width:1000px; margin:0 auto; padding:56px 32px 96px;">
+    <a href="#" class="back-link">← Back to patterns</a>
     <div class="detail-grid" style="margin-top:28px; display:grid; gap:56px; align-items:start;">
-      <div style="position:relative;">
-        <div id="carousel" style="aspect-ratio:1/1; border-radius:20px; overflow:hidden; border:1px solid #C9D3D8; display:flex; overflow-x:auto; scroll-snap-type:x mandatory;">
+      <div class="carousel-wrap" style="position:relative;">
+        <div class="carousel" style="aspect-ratio:1/1; border-radius:20px; overflow:hidden; border:1px solid #C9D3D8; display:flex; overflow-x:auto; scroll-snap-type:x mandatory;">
           <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
             <img src="images/photo-lamp-v2.jpg" alt="Inigo Flowers Lampshade, lit" style="width:100%; height:100%; object-fit:cover; object-position:center 70%; transform:scale(1.15); display:block;">
           </div>
@@ -272,9 +290,9 @@
             <img src="images/photo-lamp-3.jpeg" alt="Filet crochet piece in progress with yarn" style="width:100%; height:100%; object-fit:contain; transform:rotate(-90deg); display:block;">
           </div>
         </div>
-        <button id="carousel-prev" class="carousel-arrow" aria-label="Previous photo" style="left:14px;">‹</button>
-        <button id="carousel-next" class="carousel-arrow" aria-label="Next photo" style="right:14px;">›</button>
-        <div id="carousel-dots" style="display:flex; gap:8px; justify-content:center; margin-top:14px;"></div>
+        <button class="carousel-arrow carousel-prev" aria-label="Previous photo" style="left:14px;">‹</button>
+        <button class="carousel-arrow carousel-next" aria-label="Next photo" style="right:14px;">›</button>
+        <div class="carousel-dots" style="display:flex; gap:8px; justify-content:center; margin-top:14px;"></div>
       </div>
       <div>
         <span style="display:inline-block; background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; margin-bottom:16px;">Intermediate / ambitious beginner</span>
@@ -283,8 +301,49 @@
         <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">Well suited to intermediate crocheters, and a perfect project for your first time trying filet crochet thanks to the full guide included.</p>
         <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 32px; font-family: 'EB Garamond',serif;">Full materials list, yardage, hook size and lampshade sizing are included in the pattern description on Etsy and Ko-fi.</p>
         <div style="display:flex; gap:16px; flex-wrap:wrap;">
-          <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-etsy etsy-link-product">Shop on Etsy</a>
-          <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-kofi kofi-link-product">Shop on Ko-fi</a>
+          <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-etsy product-etsy-link" data-pattern="inigo">Shop on Etsy</a>
+          <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-kofi product-kofi-link" data-pattern="inigo">Shop on Ko-fi</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PATTERN DETAIL VIEW: LYCIA BELT -->
+  <main id="detail-lycia" class="detail-view" style="max-width:1000px; margin:0 auto; padding:56px 32px 96px;">
+    <a href="#" class="back-link">← Back to patterns</a>
+    <div class="detail-grid" style="margin-top:28px; display:grid; gap:56px; align-items:start;">
+      <div class="carousel-wrap" style="position:relative;">
+        <div class="carousel" style="aspect-ratio:1/1; border-radius:20px; overflow:hidden; border:1px solid #C9D3D8; display:flex; overflow-x:auto; scroll-snap-type:x mandatory;">
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/25dd72/8651748595/il_794xN.8651748595_f44h.jpg" alt="Lycia Belt in white worn with jeans" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/a26b37/8603907864/il_794xN.8603907864_a1qc.jpg" alt="Lycia Belt tied at the waist" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/c591df/8651748801/il_794xN.8651748801_8k8r.jpg" alt="Light blue Lycia Belt with a bow at the back" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/95b6b6/8603907920/il_794xN.8603907920_24ma.jpg" alt="Cream and tan Lycia Belt with a striped top" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/2c8240/8651749033/il_794xN.8651749033_yqri.jpg" alt="Lycia Belt laid flat with yarn and a cup of tea" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-prev" aria-label="Previous photo" style="left:14px;">‹</button>
+        <button class="carousel-arrow carousel-next" aria-label="Next photo" style="right:14px;">›</button>
+        <div class="carousel-dots" style="display:flex; gap:8px; justify-content:center; margin-top:14px;"></div>
+      </div>
+      <div>
+        <span style="display:inline-block; background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; margin-bottom:16px;">Beginner friendly</span>
+        <h1 style="font-family:'EB Garamond',serif; font-size:40px; font-weight:600; margin:0 0 12px;">Lycia Belt</h1>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">A quick, made-to-measure crochet belt that uses up your scrap yarn. I made the first one on the way home from a holiday in Çıralı, Turkey, which is where the name comes from.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">It's worked in rounds around a foundation chain, with pairs of clusters that form little flowers, a single crochet border that pulls them together, and chain ties that finish in a bow at the back. You make the foundation chain to your own measurement, so it fits any waist or hip size. Mine took under 2 hours.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">Suitable for beginners: you'll need to know chain, slip stitch and single crochet, and the cluster and sc2tog are explained in the pattern. Written in US crochet terms.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 32px; font-family: 'EB Garamond',serif;">Full materials list, yarn and hook size are included in the pattern description on Etsy and Ko-fi.</p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-etsy product-etsy-link" data-pattern="lycia">Shop on Etsy</a>
+          <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-kofi product-kofi-link" data-pattern="lycia">Shop on Ko-fi</a>
         </div>
       </div>
     </div>
