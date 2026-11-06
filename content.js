@@ -17,7 +17,12 @@ const SITE = {
   etsyUrl: 'https://hannahnicoledesigns8.etsy.com',
   kofiUrl: 'https://ko-fi.com/hannahnicoledesigns/shop',
   // Direct links to each pattern's own listing, used on that pattern's detail page
+  // Stella Tote launch offer: half price + free pattern. Hides itself automatically after this date.
+  stellaOfferEnds: '2026-11-12',   // last day of the offer (year-month-day)
   patterns: {
+    stella: {
+      etsy: 'https://hannahnicoledesigns8.etsy.com/listing/4611314276',
+    },
     inigo: {
       etsy: 'https://hannahnicoledesigns8.etsy.com/listing/4551719881',
       kofi: 'https://ko-fi.com/s/ef71679a74',
@@ -36,6 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.product-kofi-link').forEach((el) => { el.href = SITE.patterns[el.dataset.pattern].kofi; });
 
   const body = document.body;
+
+  // Launch offer: after the last day (UK time), hide offer flags and show the full price
+  const offerEnd = new Date(`${SITE.stellaOfferEnds}T23:59:59Z`);
+  if (new Date() > offerEnd) body.classList.add('promo-over');
+  const endLabel = new Date(`${SITE.stellaOfferEnds}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'Europe/London' });
+  document.querySelectorAll('.promo-end-text').forEach((el) => { el.textContent = endLabel; });
   const headerBar = document.getElementById('header-bar');
 
   function updateHeaderHeight() {

@@ -95,6 +95,12 @@
   .detail-view { display:none; }
   .detail-view.active { display:block; }
   .gallery-list { display:flex; flex-direction:column; gap:32px; }
+  .promo-tag { align-self:flex-start; display:inline-block; background:#E8B8AC; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; }
+  .old-price { font-family:'EB Garamond',serif; font-size:17px; color:#8E7355; text-decoration:line-through; margin-left:8px; font-weight:400; }
+  .promo-box { background:#fff; border:1px solid #E8B8AC; border-left:4px solid #E8B8AC; border-radius:12px; padding:18px 20px; margin:0 0 24px; }
+  .promo-box a { color:#8E7355; font-weight:700; }
+  body.promo-over .promo-only { display:none !important; }
+  body:not(.promo-over) .after-promo-only { display:none !important; }
 </style>
 </head>
 <body>
@@ -170,6 +176,24 @@
         <h2 style="font-family:'EB Garamond',serif; font-size:38px; font-weight:600; margin:0;">Latest releases</h2>
       </div>
       <div class="gallery-list">
+      <div class="gallery-card" style="max-width:760px; margin:0 auto; display:grid; gap:0; border:1px solid #C9D3D8; border-radius:20px; overflow:hidden; background:#fff;">
+        <div style="aspect-ratio:1/1; overflow:hidden;">
+          <img src="https://i.etsystatic.com/67223073/r/il/d7f68d/8808657426/il_794xN.8808657426_393u.jpg" alt="Stella Tote carried on the shoulder" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div style="padding:clamp(24px,6vw,36px); display:flex; flex-direction:column; justify-content:center;">
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
+            <span class="promo-tag promo-only">Launch week: half price</span>
+            <span style="background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px;">Advanced beginner / intermediate</span>
+          </div>
+          <h3 style="font-family:'EB Garamond',serif; font-size:26px; font-weight:600; margin:0 0 10px;">Stella Tote</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:#38495A; margin:0 0 18px;">A structured, striped raffia tote with a strong double-layered base and no-stretch straps. Roomy, two-colour, and keeps its shape.</p>
+          <p class="promo-only" style="font-size:13.5px; line-height:1.55; color:#38495A; margin:0 0 18px;">Plus a free Inigo Lampshade or Lycia Belt pattern this week – <a href="https://www.instagram.com/hannahnicoledesigns.uk" target="_blank" rel="noopener" style="color:#8E7355; font-weight:700;">message me on Instagram</a>.</p>
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <span style="font-family:'EB Garamond',serif; font-size:22px; font-weight:600;"><span class="promo-only">£4<span class="old-price">£8</span></span><span class="after-promo-only">£8</span></span>
+            <a href="#" class="view-pattern-btn view-pattern-link" data-pattern="stella">View Pattern</a>
+          </div>
+        </div>
+      </div>
       <div class="gallery-card" style="max-width:760px; margin:0 auto; display:grid; gap:0; border:1px solid #C9D3D8; border-radius:20px; overflow:hidden; background:#fff;">
         <div style="aspect-ratio:1/1; overflow:hidden;">
           <img src="https://i.etsystatic.com/67223073/r/il/25dd72/8651748595/il_794xN.8651748595_f44h.jpg" alt="Lycia Belt worn with jeans" style="width:100%; height:100%; object-fit:cover; display:block;">
@@ -303,6 +327,48 @@
         <div style="display:flex; gap:16px; flex-wrap:wrap;">
           <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-etsy product-etsy-link" data-pattern="inigo">Shop on Etsy</a>
           <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-kofi product-kofi-link" data-pattern="inigo">Shop on Ko-fi</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PATTERN DETAIL VIEW: STELLA TOTE -->
+  <main id="detail-stella" class="detail-view" style="max-width:1000px; margin:0 auto; padding:56px 32px 96px;">
+    <a href="#" class="back-link">← Back to patterns</a>
+    <div class="detail-grid" style="margin-top:28px; display:grid; gap:56px; align-items:start;">
+      <div class="carousel-wrap" style="position:relative;">
+        <div class="carousel" style="aspect-ratio:1/1; border-radius:20px; overflow:hidden; border:1px solid #C9D3D8; display:flex; overflow-x:auto; scroll-snap-type:x mandatory;">
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/d7f68d/8808657426/il_794xN.8808657426_393u.jpg" alt="Stella Tote carried on the shoulder" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/442318/8808647556/il_794xN.8808647556_snte.jpg" alt="Close-up of the Stella Tote stripes" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/81df32/8856469055/il_794xN.8856469055_4585.jpg" alt="Stella Tote worn by a green railing" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+          <div style="width:100%; height:100%; flex:none; scroll-snap-align:start; overflow:hidden;">
+            <img src="https://i.etsystatic.com/67223073/r/il/b7ba53/8856430163/il_794xN.8856430163_d0xm.jpg" alt="Stella Tote with a pink top" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-prev" aria-label="Previous photo" style="left:14px;">‹</button>
+        <button class="carousel-arrow carousel-next" aria-label="Next photo" style="right:14px;">›</button>
+        <div class="carousel-dots" style="display:flex; gap:8px; justify-content:center; margin-top:14px;"></div>
+      </div>
+      <div>
+        <span style="display:inline-block; background:#C9D3D8; color:#38495A; font-size:12px; font-weight:700; letter-spacing:0.3px; padding:5px 12px; border-radius:20px; margin-bottom:16px;">Advanced beginner / intermediate</span>
+        <h1 style="font-family:'EB Garamond',serif; font-size:40px; font-weight:600; margin:0 0 12px;">Stella Tote</h1>
+        <div class="promo-box promo-only">
+          <div style="font-family:'EB Garamond',serif; font-size:20px; font-weight:600; margin:0 0 6px;">Launch week offer</div>
+          <p style="font-size:14.5px; line-height:1.6; margin:0 0 8px;">Half price for the first week: <strong>£4</strong> <span style="text-decoration:line-through; color:#8E7355;">£8</span>, until <span class="promo-end-text">12 November</span>.</p>
+          <p style="font-size:14.5px; line-height:1.6; margin:0;">You can also get a free pattern – the Inigo Flowers Lampshade or the Lycia Belt – just <a href="https://www.instagram.com/hannahnicoledesigns.uk" target="_blank" rel="noopener">message me on Instagram</a>.</p>
+        </div>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">A structured, striped raffia tote with a strong double-layered base and no-stretch straps. It started as a 21st birthday present for one of my best friends, Stella, hence the name.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">It's a roomy two-colour bag that keeps its shape, with straps made using a technique that stops them stretching or snapping. Roughly 36 x 11 cm at the base, 34 cm tall, with a 24 cm handle drop.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 16px; font-family: 'EB Garamond',serif;">Suited to advanced beginners and intermediate crocheters: you should be comfortable with sc, hdc and dc. Colour changes, seaming and the strap technique are all explained. Written in US crochet terms.</p>
+        <p style="font-size: 16px; line-height: 1.75; color: #38495A; margin: 0 0 32px; font-family: 'EB Garamond',serif;">Full materials list, yardage and hook size are included in the pattern description on Etsy.</p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="#" target="_blank" rel="noopener" class="shop-btn shop-btn-etsy product-etsy-link" data-pattern="stella">Shop on Etsy</a>
         </div>
       </div>
     </div>
